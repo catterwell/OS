@@ -24,3 +24,14 @@
 \contentsline {subsection}{\numberline {2.3}The OS process namespace}{10}{subsection.2.3}% 
 \contentsline {subsection}{\numberline {2.4}Representation of processes by the OS}{10}{subsection.2.4}% 
 \contentsline {subsection}{\numberline {2.5}The PCB}{10}{subsection.2.5}% 
+\contentsline {subsection}{\numberline {2.6}PCBs and CPU state}{11}{subsection.2.6}% 
+\contentsline {subsection}{\numberline {2.7}Process execution states}{12}{subsection.2.7}% 
+\contentsline {subsection}{\numberline {2.8}State queues}{13}{subsection.2.8}% 
+\contentsline {subsection}{\numberline {2.9}PCBs and state queues}{13}{subsection.2.9}% 
+\contentsline {subsection}{\numberline {2.10}Process creation}{14}{subsection.2.10}% 
+\contentsline {subsection}{\numberline {2.11}Process creation semantics}{14}{subsection.2.11}% 
+\contentsline {subsubsection}{\numberline {2.11.1}UNIX process creation details}{14}{subsubsection.2.11.1}% 
+\contentsline {subsection}{\numberline {2.12}\texttt {exec} v.s. \texttt {fork}}{15}{subsection.2.12}% 
+\contentsline {subsection}{\numberline {2.13}Method 1: \texttt {vfork}}{16}{subsection.2.13}% 
+\contentsline {subsection}{\numberline {2.14}Method 2: copy-on-write}{16}{subsection.2.14}% 
+\contentsline {subsection}{\numberline {2.15}Summary}{17}{subsection.2.15}% 

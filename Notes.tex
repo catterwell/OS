@@ -418,9 +418,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\begin{center}{}
-    \includegraphics[height=280]{a-process's-address-space}
-\end{center}
+\includegraphics[height=280]{a-process-address-space}
 
 \subsection{The OS process namespace}
 
@@ -470,7 +468,224 @@ MINIX 3
     \begin{itemize}
         \item defined in \texttt{task\_struct (include/linux/sched.h)}
         \item Over 95 fields!
-    \end{itemize}<++>
-\end{itemize}<++>
+    \end{itemize}
+\end{itemize}
+
+\subsection{PCBs and CPU state}
+
+\begin{itemize}
+    \item When a process is running, its CPU state is inside the CPU
+        \begin{itemize}
+            \item PC, SP, registers
+            \item CPU contains current values
+        \end{itemize}
+    \item When the OS gets control because of a
+        \begin{itemize}
+            \item \emph{Trap}: program executes a syscall
+            \item \emph{Exception}: program does something unexpected (e.g.\ page fault)
+            \item \emph{Interrupt}: A hardware device requests service
+        \end{itemize}
+        the OS saves the CPU state of the running process in that process's PCB.\
+
+    \item When the OS returns the process to the running state
+        \begin{itemize}
+            \item it loads the hardware registers with values from that process's PCB
+            \item e.g.\ general purpose registers, SP, instruction pointer
+        \end{itemize}
+    \item This act of switching the CPU from one process to another is called a
+        \emph{context switch}
+        \begin{itemize}
+            \item systems may do 100s or 1000s of switches per second;
+            \item takes a few microseconds on today's hardware;
+            \item still expensive relative to thread-based context switches.\
+        \end{itemize}
+    \item Choosing which process to run next is called \emph{scheduling}.\
+\end{itemize}
+
+\includegraphics[height=280]{process-context-switch}
+
+\subsection{Process execution states}
+
+\begin{itemize}
+    \item Each process has an \emph{execution state}, which indicates what it's currently doing
+        \begin{itemize}
+            \item \emph{ready}: waiting to be assigned to a CPU ---
+                could run, but another process has the CPU;\
+            \item \emph{running}: executing on a CPU ---
+                it's the process that currently controls the CPU;\
+            \item \emph{waiting} (aka ``blocked''): waiting for an event, e.g.\ I/O completion,
+                or a messing from (or the completion of) another process ---
+                cannot make progress until the event happens.
+        \end{itemize}
+    \item As a process executes, it moves from state to state
+        \begin{itemize}
+            \item UNIX:\ run \texttt{top}, STAT column shows current state
+            \item which state is a process most of the time?
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=280]{process-states-and-state-transitions}
+
+\subsection{State queues}
+
+\begin{itemize}
+    \item The OS maintains a collection of queues that represent the state of all processes in
+        the system
+        \begin{itemize}
+            \item typically one queue for each state (e.g.\ ready, waiting, \dots);
+            \item each PCB is queued onto a state queue according to the current state of the
+                process it represents;
+            \item as a process changes state, its PCB is unlinked from one queue,
+                and linked onto another.
+        \end{itemize}
+    \item The PCBs are moved between queues, which are represented as linked lists.
+    \item There may be many wait queues, one for each type of wait
+        (particular device, timer, message, \dots).
+\end{itemize}
+
+\subsection{PCBs and state queues}
+
+\begin{itemize}
+    \item PCBs are data structures
+        \begin{itemize}
+            \item dynamically allocated inside OS memory.
+        \end{itemize}
+    \item When a process is created:
+        \begin{itemize}
+            \item OS allocates a PCB for it;
+            \item OS initializes PCB;\
+            \item (OS does other things not related to the PCB);
+            \item OS puts PCB on the correct queue.
+        \end{itemize}
+    \item As a process computes:
+        \begin{itemize}
+            \item OS moves its PCB from queue to queue.
+        \end{itemize}
+    \item When a process is terminated:
+        \begin{itemize}
+            \item PCB may be retained for a while (to receive signals, etc.)
+            \item eventually, OS deallocates the PCB.\
+        \end{itemize}
+\end{itemize}
+
+\subsection{Process creation}
+
+\begin{itemize}
+    \item New processes are created by existing processes
+        \begin{itemize}
+            \item creator is called the \emph{parent};
+            \item created process is called the \emph{child};\\\
+                UNIX:\ do \texttt{ps -ef}, look for PPID field
+            \item what creates the first process, and when? \\
+                on UNIX, this first process is init; \\
+                on many Linux distributions, this is SystemD or Runit (on Void).
+        \end{itemize}
+\end{itemize}
+
+\subsection{Process creation semantics}
+
+\begin{itemize}
+    \item (Depending on the OS) child processes inherit certain attributes of the parent.
+        E.g.
+        \begin{itemize}
+            \item Open file table: implies \texttt{stdin}/\texttt{stdout}/\texttt{stderr};
+            \item On some systems, resource allocation to parent may be divided among children.
+        \end{itemize}
+    \item (In Unix) when a child is created, the parent may either wait for the child to finish,
+        or continue in parallel.
+\end{itemize}
+
+\subsubsection{UNIX process creation details}
+
+\begin{itemize}
+    \item UNIX process creation through \texttt{fork} system call
+        \begin{itemize}
+            \item creates and initializes a new PCB
+                \begin{itemize}
+                    \item initializes kernel resources of new process with resources of parent
+                        (e.g.\ open files)
+                    \item initializes PC, SP to be same as parent.
+                \end{itemize}
+            \item creates a new address space
+                \begin{itemize}
+                    \item initialises new address space with a copy of the entire contents of the
+                        address space of the parent
+                \end{itemize}
+            \item places new PCB on the ready queue.
+        \end{itemize}
+    \item the \texttt{fork} system call ``returns twice''
+        \begin{itemize}
+            \item once into the parent, and once into the child
+                \begin{itemize}
+                    \item returns the child's PID to the parent
+                    \item returns \texttt{0} to the child
+                \end{itemize}
+        \end{itemize}
+    \item \texttt{fork} = ``clone me''. \\
+        The return value is used to determine whether we're the clone or the original.
+\end{itemize}
+
+\includegraphics[height=280]{fork}
+
+\subsection{\texttt{exec} v.s. \texttt{fork}}
+
+\begin{itemize}
+    \item Q:\ So how do we start a new program, instead of just forking the old program?
+    \item A:\ First \texttt{fork}, then \texttt{exec}.
+    \item \texttt{exec}
+        \begin{itemize}
+            \item stops the current process
+            \item loads program `prog' into the address space
+                (i.e.\ overwrites the existing process image)
+            \item initialises hardware context, args for new program
+            \item places PCB onto ready queue
+            \item \emph{does not create a new process!}
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=280]{exec-and-fork}
+
+\subsection{Method 1: \texttt{vfork}}
+\begin{itemize}
+    \item \texttt{vfork} is the older (now uncommon) of the two approaches.
+    \item Instead of ``child's address space is a copy of the parent's'',
+        the semantics are ``child's address space \emph{is} the parent's'',
+        \begin{itemize}
+            \item with a ``promise'' that the child won't modify the address space before doing
+                an \texttt{execve}.
+            \item When \texttt{execve} is called, a new address space is created and it's loaded
+                with the new executable.
+            \item Parent is blocked until \texttt{execve} is executed by child.
+            \item Saves wasted effort of duplicating parent's address space.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Method 2: copy-on-write}
+\begin{itemize}
+    \item Retains the original semantics, but copies ``only what is necessary'' rather than
+        the entire address space.
+    \item On \texttt{fork}:
+        \begin{itemize}
+            \item Create a new address space
+            \item Initialise page tables with same mappings as the parent's
+                (i.e.\ they both point to the same physical memory).
+                \begin{itemize}
+                    \item (No copying of address space contents have occurred at this point
+                --- with the sole exception of the top page of the stack.)
+                \end{itemize}
+            \item Set both parent and child page tables to make all pages read-only
+            \item If either parent or child writes to memory, an exception occurs.
+            \item When exception occurs, OS copies the page, adjusts page tables, etc.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Summary}
+\begin{itemize}
+    \item Process
+    \item PCB
+    \item Process state
+    \item Context switch
+    \item Process creation and termination
+\end{itemize}
 
 \end{document}

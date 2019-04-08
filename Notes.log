@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.4.7)  7 APR 2019 23:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.4.7)  8 APR 2019 02:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -370,6 +370,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 27.
 LaTeX Info: Redefining \pageref on input line 27.
 LaTeX Info: Redefining \nameref on input line 27.
+ (./Notes.out) (./Notes.out)
 \@outlinefile=\write3
 \openout3 = `Notes.out'.
 
@@ -405,7 +406,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 29.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) (./Notes.toc)
 \tf@toc=\write4
 \openout4 = `Notes.toc'.
 
@@ -426,7 +427,7 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2]
-<pics/a_kernel_crossing_illustrated.jpg, id=28, 1284.8pt x 722.7pt>
+<pics/a_kernel_crossing_illustrated.jpg, id=210, 1284.8pt x 722.7pt>
 
 ./Notes.tex:132: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -457,7 +458,7 @@ File: pics/a_kernel_crossing_illustrated.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/a_kernel_crossing_illustrated.jpg  used on input line 132.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [3 <./pics/a_kernel_crossing_illustrated.jpg>]
-<pics/system-layers.jpg, id=35, 1284.8pt x 722.7pt>
+<pics/system-layers.jpg, id=215, 1284.8pt x 722.7pt>
 
 ./Notes.tex:217: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -493,7 +494,7 @@ Overfull \hbox (14.07957pt too wide) in paragraph at lines 217--218
  []
 
 [4] [5 <./pics/system-layers.jpg>] [6]
-<pics/microkernel-structure-illustrated.jpg, id=57, 1284.8pt x 722.7pt>
+<pics/microkernel-structure-illustrated.jpg, id=228, 1284.8pt x 722.7pt>
 
 ./Notes.tex:334: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -523,7 +524,7 @@ File: pics/microkernel-structure-illustrated.jpg Graphic file (type jpg)
 <use pics/microkernel-structure-illustrated.jpg>
 Package pdftex.def Info: pics/microkernel-structure-illustrated.jpg  used on input line 334.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/windows.jpg, id=58, 1284.8pt x 722.7pt>
+<pics/windows.jpg, id=229, 1284.8pt x 722.7pt>
 ./Notes.tex:341: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -553,7 +554,7 @@ File: pics/windows.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/windows.jpg  used on input line 341.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [7 <./pics/microkernel-structure-illustrated.jpg>]
-<pics/minix-3.jpg, id=66, 1284.8pt x 722.7pt>
+<pics/minix-3.jpg, id=235, 1284.8pt x 722.7pt>
 
 ./Notes.tex:345: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -584,50 +585,210 @@ File: pics/minix-3.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/minix-3.jpg  used on input line 345.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [8 <./pics/windows.jpg> <./pics/minix-3.jpg>]
+<pics/a-process-address-space.jpg, id=240, 1284.8pt x 722.7pt>
 
-./Notes.tex:422: LaTeX Error: File `a-process's-address-space' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
+./Notes.tex:421: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.421 ...hics[height=280]{a-process-address-space}
                                                   
-l.422 ...cs[height=280]{a-process's-address-space}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 476.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 476.
+./Notes.tex:421: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.421 ...hics[height=280]{a-process-address-space}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/a-process-address-space.jpg Graphic file (type jpg)
+<use pics/a-process-address-space.jpg>
+Package pdftex.def Info: pics/a-process-address-space.jpg  used on input line 421.
+(pdftex.def)             Requested size: 497.77644pt x 280.0pt.
+
+Overfull \hbox (14.07957pt too wide) in paragraph at lines 421--422
+[][] 
+ []
+
+[9] [10 <./pics/a-process-address-space.jpg>]
+<pics/process-context-switch.jpg, id=249, 1284.8pt x 722.7pt>
+
+./Notes.tex:505: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.505 ...phics[height=280]{process-context-switch}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:505: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.505 ...phics[height=280]{process-context-switch}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/process-context-switch.jpg Graphic file (type jpg)
+<use pics/process-context-switch.jpg>
+Package pdftex.def Info: pics/process-context-switch.jpg  used on input line 505.
+(pdftex.def)             Requested size: 497.77644pt x 280.0pt.
+
+Overfull \hbox (14.07957pt too wide) in paragraph at lines 505--506
+[][] 
+ []
+
+[11]
+<pics/process-states-and-state-transitions.jpg, id=254, 1284.8pt x 722.7pt>
+
+./Notes.tex:527: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.527 ...80]{process-states-and-state-transitions}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:527: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.527 ...80]{process-states-and-state-transitions}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/process-states-and-state-transitions.jpg Graphic file (type jpg)
+<use pics/process-states-and-state-transitions.jpg>
+Package pdftex.def Info: pics/process-states-and-state-transitions.jpg  used on input line 527.
+(pdftex.def)             Requested size: 497.77644pt x 280.0pt.
+
+Overfull \hbox (14.07957pt too wide) in paragraph at lines 527--528
+[][] 
+ []
+
+[12 <./pics/process-context-switch.jpg>] [13 <./pics/process-states-and-state-transitions.jpg>]
+<pics/fork.jpg, id=264, 1284.8pt x 722.7pt>
+
+./Notes.tex:628: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.628 \includegraphics[height=280]{fork}
+                                        
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:628: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.628 \includegraphics[height=280]{fork}
+                                        
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/fork.jpg Graphic file (type jpg)
+<use pics/fork.jpg>
+Package pdftex.def Info: pics/fork.jpg  used on input line 628.
+(pdftex.def)             Requested size: 497.77644pt x 280.0pt.
+
+Overfull \hbox (14.07957pt too wide) in paragraph at lines 628--629
+[][] 
+ []
+
+[14]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 630.
+<pics/exec-and-fork.jpg, id=269, 1284.8pt x 722.7pt>
+
+./Notes.tex:646: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.646 \includegraphics[height=280]{exec-and-fork}
+                                                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:646: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.646 \includegraphics[height=280]{exec-and-fork}
+                                                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/exec-and-fork.jpg Graphic file (type jpg)
+<use pics/exec-and-fork.jpg>
+Package pdftex.def Info: pics/exec-and-fork.jpg  used on input line 646.
+(pdftex.def)             Requested size: 497.77644pt x 280.0pt.
+
+Overfull \hbox (14.07957pt too wide) in paragraph at lines 646--647
+[][] 
+ []
+
+[15 <./pics/fork.jpg>] [16 <./pics/exec-and-fork.jpg>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 691.
+ [17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 691.
  (./Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 476.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 476.
-
-
-Package rerunfilecheck Warning: File `Notes.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Notes.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3D9B7BBBF1FFF1135833E8141EF52DD8;1823.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 691.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 691.
+Package rerunfilecheck Info: File `Notes.out' has not changed.
+(rerunfilecheck)             Checksum: 834341589CA91AECCEE46483EB3089EC;2596.
  ) 
 Here is how much of TeX's memory you used:
- 7140 strings out of 492616
- 101042 string characters out of 6135178
- 205151 words of memory out of 5000000
- 10888 multiletter control sequences out of 15000+600000
- 11535 words of font info for 43 fonts, out of 8000000 for 9000
+ 7222 strings out of 492616
+ 102736 string characters out of 6135178
+ 207261 words of memory out of 5000000
+ 10952 multiletter control sequences out of 15000+600000
+ 12695 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,43p,813b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Notes.pdf (10 pages, 816628 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Notes.pdf (17 pages, 1288304 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 335 PDF objects out of 1000 (max. 8388607)
+ 292 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 347 words of extra memory for PDF output out of 10000 (max. 10000000)
 

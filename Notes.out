@@ -24,3 +24,14 @@
 \BOOKMARK [2][-]{subsection.2.3}{The OS process namespace}{section.2}% 24
 \BOOKMARK [2][-]{subsection.2.4}{Representation of processes by the OS}{section.2}% 25
 \BOOKMARK [2][-]{subsection.2.5}{The PCB}{section.2}% 26
+\BOOKMARK [2][-]{subsection.2.6}{PCBs and CPU state}{section.2}% 27
+\BOOKMARK [2][-]{subsection.2.7}{Process execution states}{section.2}% 28
+\BOOKMARK [2][-]{subsection.2.8}{State queues}{section.2}% 29
+\BOOKMARK [2][-]{subsection.2.9}{PCBs and state queues}{section.2}% 30
+\BOOKMARK [2][-]{subsection.2.10}{Process creation}{section.2}% 31
+\BOOKMARK [2][-]{subsection.2.11}{Process creation semantics}{section.2}% 32
+\BOOKMARK [3][-]{subsubsection.2.11.1}{UNIX process creation details}{subsection.2.11}% 33
+\BOOKMARK [2][-]{subsection.2.12}{exec v.s. fork}{section.2}% 34
+\BOOKMARK [2][-]{subsection.2.13}{Method 1: vfork}{section.2}% 35
+\BOOKMARK [2][-]{subsection.2.14}{Method 2: copy-on-write}{section.2}% 36
+\BOOKMARK [2][-]{subsection.2.15}{Summary}{section.2}% 37

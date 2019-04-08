@@ -145,19 +145,18 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT Notes.toc
 INPUT Notes.toc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 OUTPUT Notes.toc
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /usr/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT pics/a_kernel_crossing_illustrated.jpg
 INPUT ./pics/a_kernel_crossing_illustrated.jpg
@@ -177,6 +176,7 @@ INPUT ./pics/minix-3.jpg
 INPUT pics/a-process-address-space.jpg
 INPUT ./pics/a-process-address-space.jpg
 INPUT ./pics/a-process-address-space.jpg
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT pics/process-context-switch.jpg
 INPUT ./pics/process-context-switch.jpg
 INPUT ./pics/process-context-switch.jpg
@@ -186,7 +186,6 @@ INPUT ./pics/process-states-and-state-transitions.jpg
 INPUT pics/fork.jpg
 INPUT ./pics/fork.jpg
 INPUT ./pics/fork.jpg
-INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT pics/exec-and-fork.jpg
 INPUT ./pics/exec-and-fork.jpg
 INPUT ./pics/exec-and-fork.jpg
@@ -203,4 +202,3 @@ INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
-INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb

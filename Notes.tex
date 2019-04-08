@@ -30,9 +30,13 @@
 
 \break{}
 
-\section{Lecture 2: Operating System Structure}
-\subsection{Architectural features affecting OS\emph{s}}
+\section{Introduction}
 
+\section{Operating System Structure}
+
+\subsection{Architectural impact}
+
+\textbf{Architectural features affecting OS\emph{s}}
 \begin{itemize}
     \item These features were built primarily to support OS\emph{s}:
         \begin{itemize}
@@ -49,7 +53,11 @@
     \item ASPLOS
 \end{itemize}
 
-\subsection{Privileged instructions}
+\subsection{User operating interaction}
+
+\subsubsection{User v.s.\ kernel}
+
+\textbf{Privileged instructions}
 \begin{itemize}
     \item Some instructions are restricted to the OS
         \begin{itemize}
@@ -64,7 +72,7 @@
     \item Restrictions provide safety and security
 \end{itemize}
 
-\subsection{OS protections}
+\textbf{OS protections}
 \begin{itemize}
     \item So how does the process know if a privileged instruction should be executed?
         \begin{itemize}
@@ -77,13 +85,13 @@
                 \end{itemize}
             \item Privileged instructions can only be executed in kernel (privileged) mode
                 \begin{itemize}
-                    \item if code running in user mode attempts to execute a privileged instruction,
-                        the illegal execution trap.
+                    \item if code running in user mode attempts to execute a privileged
+                        instruction, the illegal execution trap.
                 \end{itemize}
         \end{itemize}
 \end{itemize}
 
-\subsection{Crossing protection boundaries}
+\textbf{Crossing protection boundaries}
 \begin{itemize}
     \item So how do user programs do something privileged?
         \begin{itemize}
@@ -100,7 +108,9 @@
         \end{itemize}
 \end{itemize}
 
-\subsection{Syscall}
+\subsubsection{Syscall}
+
+\textbf{Syscall}
 \begin{itemize}
     \item The syscall instruction \emph{atomically}:
         \begin{itemize}
@@ -123,7 +133,8 @@
                 \end{itemize}
             \item OS returns using a special instruction
                 \begin{itemize}
-                    \item Automatically sets PC to return address and sets execution mode to user.
+                    \item Automatically sets PC to return address and sets execution mode to
+                        user.
                 \end{itemize}
         \end{itemize}
 \end{itemize}
@@ -132,8 +143,7 @@
     \includegraphics[height=270]{a_kernel_crossing_illustrated}
 \end{center}
 
-\subsection{System call issues}
-
+\textbf{System call issues}
 \begin{itemize}
     \item A syscall is not a subroutine call, with the caller specifying the next PC.\
         \begin{itemize}
@@ -154,8 +164,7 @@
         \end{itemize}
 \end{itemize}
 
-\subsection{Exception handling and protection}
-
+\textbf{Exception handling and protection}
 \begin{itemize}
     \item \emph{All} entries to the OS occur via the mechanism just shown
         \begin{itemize}
@@ -173,7 +182,11 @@
         memory protection, protected I/O, limiting user resource consumption.
 \end{itemize}
 
-\subsection{OS structure}
+\subsection{Operating System structure}
+
+\subsubsection{Layers}
+
+\textbf{Operating System structure}
 \begin{itemize}
     \item The OS sits between application programs and the hardware
         \begin{itemize}
@@ -183,8 +196,7 @@
         \end{itemize}
 \end{itemize}
 
-\subsection{Operating system design and implementation}
-
+\textbf{Operating system design and implementation}
 \begin{itemize}
     \item Design and implementation of OS not ``solvable'', but some approaches have proven
         successful.
@@ -211,13 +223,12 @@
         \emph{software engineering}.
 \end{itemize}
 
-\subsection{System layers}
-
+\textbf{System layers}
 \begin{center}{}
     \includegraphics[height=280]{system-layers}
 \end{center}
 
-\subsection{Major OS components}
+\textbf{Major OS components}
 \begin{itemize}
     \item processes
     \item memory
@@ -230,7 +241,7 @@
     \item networking
 \end{itemize}
 
-\subsection{OS structure}
+\textbf{OS structure}
 
 \begin{itemize}
     \item There's no clear hierarchy within an OS --- each of them needs access to different
@@ -253,7 +264,9 @@
         \end{itemize}
 \end{itemize}
 
-\subsection{Monolithic design}
+\subsubsection{Examples}
+
+\textbf{Monolithic design}
 \begin{itemize}
     \item Traditionally, OS\emph{s} (like UNIX) were built as a \emph{monolithic} entity
         User programs | OS (everything) | hardware
@@ -269,8 +282,7 @@
         Find a way to organise the OS in order to simplify its design and implementation.
 \end{itemize}
 
-\subsection{Layering}
-
+\textbf{Layering}
 \begin{itemize}
     \item The traditional approach is layering
         \begin{itemize}
@@ -300,8 +312,7 @@
         systems modelled as layers, but not really built that way.
 \end{itemize}
 
-\subsection{Hardware abstraction layer}
-
+\textbf{Hardware abstraction layer}
 \begin{itemize}
     \item An example of layering in modern operating systems
     \item Goal: separates hardware-specific routines from the \emph{core} OS
@@ -311,7 +322,7 @@
         \end{itemize}
 \end{itemize}
 
-\subsection{Microkernels}
+\textbf{Microkernels}
 \begin{itemize}
     \item Popular in the late 80s, early 90s
     \item Goal:
@@ -334,7 +345,7 @@
     \includegraphics[height=270]{microkernel-structure-illustrated}
 \end{center}
 
-\subsection{Comparison of OS structures}
+\textbf{Comparison of OS structures}
 
 Windows
 
@@ -344,7 +355,7 @@ MINIX 3
 
 \includegraphics[height=270]{minix-3}
 
-\subsection{Loadable kernel modules}
+\textbf{Loadable kernel modules}
 
 \begin{itemize}
     \item (Perhaps) the best practice for OS design
@@ -369,10 +380,13 @@ MINIX 3
     \item It is impossible to pick one ``correct'' way to structure an OS
 \end{itemize}
 
-\section{Lecture 3: Processes}
+\break{}
 
-\subsection{What is a ``process''?}
+\section{Processes}
 
+\subsection{Process}
+
+\textbf{What is a ``process''?}
 \begin{itemize}
     \item The process is the OS\emph{s} abstraction for execution
         \begin{itemize}
@@ -393,8 +407,7 @@ MINIX 3
 
 \end{itemize}
 
-\subsection{What's ``in'' a process?}
-
+\textbf{What's ``in'' a process?}
 \begin{itemize}
     \item A process consists of (at least):
         \begin{itemize}
@@ -420,8 +433,7 @@ MINIX 3
 
 \includegraphics[height=280]{a-process-address-space}
 
-\subsection{The OS process namespace}
-
+\textbf{The OS process namespace}
 \begin{itemize}
     \item The particulars depend on the specific OS, but the principles are general;
     \item The name for a process is called a \emph{process ID} (PID) (an integer);
@@ -430,8 +442,9 @@ MINIX 3
     \item Operations on processes take PIDs as an argument (e.g.\ kill, wait, nice).\
 \end{itemize}
 
-\subsection{Representation of processes by the OS}
+\subsection{Process control block}
 
+\textbf{Representation of processes by the OS}
 \begin{itemize}
     \item The OS maintains a data structure to keep track of a process's state
         \begin{itemize}
@@ -449,8 +462,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\subsection{The PCB}
-
+\textbf{The PCB}
 \begin{itemize}
     \item The PCB is a data structure with many, many fields
     \begin{itemize}
@@ -471,8 +483,9 @@ MINIX 3
     \end{itemize}
 \end{itemize}
 
-\subsection{PCBs and CPU state}
+\subsection{Process state \& context switch}
 
+\textbf{PCBs and CPU state}
 \begin{itemize}
     \item When a process is running, its CPU state is inside the CPU
         \begin{itemize}
@@ -504,8 +517,7 @@ MINIX 3
 
 \includegraphics[height=280]{process-context-switch}
 
-\subsection{Process execution states}
-
+\textbf{Process execution states}
 \begin{itemize}
     \item Each process has an \emph{execution state}, which indicates what it's currently doing
         \begin{itemize}
@@ -526,8 +538,7 @@ MINIX 3
 
 \includegraphics[height=280]{process-states-and-state-transitions}
 
-\subsection{State queues}
-
+\textbf{State queues}
 \begin{itemize}
     \item The OS maintains a collection of queues that represent the state of all processes in
         the system
@@ -543,8 +554,7 @@ MINIX 3
         (particular device, timer, message, \dots).
 \end{itemize}
 
-\subsection{PCBs and state queues}
-
+\textbf{PCBs and state queues}
 \begin{itemize}
     \item PCBs are data structures
         \begin{itemize}
@@ -568,8 +578,9 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\subsection{Process creation}
+\subsection{Process creation and termination}
 
+\textbf{Process creation}
 \begin{itemize}
     \item New processes are created by existing processes
         \begin{itemize}
@@ -582,8 +593,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\subsection{Process creation semantics}
-
+\textbf{Process creation semantics}
 \begin{itemize}
     \item (Depending on the OS) child processes inherit certain attributes of the parent.
         E.g.
@@ -591,12 +601,11 @@ MINIX 3
             \item Open file table: implies \texttt{stdin}/\texttt{stdout}/\texttt{stderr};
             \item On some systems, resource allocation to parent may be divided among children.
         \end{itemize}
-    \item (In Unix) when a child is created, the parent may either wait for the child to finish,
-        or continue in parallel.
+    \item (In Unix) when a child is created, the parent may either wait for the child to
+        finish, or continue in parallel.
 \end{itemize}
 
-\subsubsection{UNIX process creation details}
-
+\textbf{UNIX process creation details}
 \begin{itemize}
     \item UNIX process creation through \texttt{fork} system call
         \begin{itemize}
@@ -608,8 +617,8 @@ MINIX 3
                 \end{itemize}
             \item creates a new address space
                 \begin{itemize}
-                    \item initialises new address space with a copy of the entire contents of the
-                        address space of the parent
+                    \item initialises new address space with a copy of the entire contents of
+                        the address space of the parent
                 \end{itemize}
             \item places new PCB on the ready queue.
         \end{itemize}
@@ -627,8 +636,7 @@ MINIX 3
 
 \includegraphics[height=280]{fork}
 
-\subsection{\texttt{exec} v.s. \texttt{fork}}
-
+\textbf{\texttt{exec} v.s.\ \texttt{fork}}
 \begin{itemize}
     \item Q:\ So how do we start a new program, instead of just forking the old program?
     \item A:\ First \texttt{fork}, then \texttt{exec}.
@@ -645,7 +653,7 @@ MINIX 3
 
 \includegraphics[height=280]{exec-and-fork}
 
-\subsection{Method 1: \texttt{vfork}}
+\textbf{Method 1: \texttt{vfork}}
 \begin{itemize}
     \item \texttt{vfork} is the older (now uncommon) of the two approaches.
     \item Instead of ``child's address space is a copy of the parent's'',
@@ -653,14 +661,14 @@ MINIX 3
         \begin{itemize}
             \item with a ``promise'' that the child won't modify the address space before doing
                 an \texttt{execve}.
-            \item When \texttt{execve} is called, a new address space is created and it's loaded
-                with the new executable.
+            \item When \texttt{execve} is called, a new address space is created and it's
+                loaded with the new executable.
             \item Parent is blocked until \texttt{execve} is executed by child.
             \item Saves wasted effort of duplicating parent's address space.
         \end{itemize}
 \end{itemize}
 
-\subsection{Method 2: copy-on-write}
+\textbf{Method 2: copy-on-write}
 \begin{itemize}
     \item Retains the original semantics, but copies ``only what is necessary'' rather than
         the entire address space.
@@ -686,6 +694,372 @@ MINIX 3
     \item Process state
     \item Context switch
     \item Process creation and termination
+\end{itemize}
+
+\break{}
+
+\section{Threads}
+
+\subsection{Process vs Threads}
+
+\textbf{What's \emph{in} a process?}
+\begin{itemize}
+    \item A process consists of (at least):
+        \begin{itemize}
+            \item An \emph{address space}, containing
+                \begin{itemize}
+                    \item the code (instructions) for the running program
+                    \item the data for the running program
+                \end{itemize}
+            \item \emph{Thread state}, consisting of
+                \begin{itemize}
+                    \item The PC, indicating the next instruction
+                    \item The SP, indicating the position on the stack
+                    \item Other general purpose registers
+                \end{itemize}
+            \item A set of \emph{OS resources}
+                \begin{itemize}
+                    \item Open files, network connections, sound channels, \dots
+                \end{itemize}
+        \end{itemize}
+    \item Decompose \dots
+        \begin{itemize}
+            \item address space
+            \item \emph{thread of control} (stack, SP, PC, registers)
+            \item OS resources
+        \end{itemize}
+\end{itemize}
+
+\textbf{Motivation}
+\begin{itemize}
+    \item Threads are about \emph{concurrency} and \emph{parallelism}
+    \item One way to get concurrency and parallelism is to use multiple processes
+        \begin{itemize}
+            \item The programs (code) of distinct processes are isolated from each other
+        \end{itemize}
+    \item Threads are another way to get concurrency and parallelism
+        \begin{itemize}
+            \item Threads \emph{share a process} --- same address space, same OS resources
+            \item Threads have private stack, CPU state --- are schedulable
+        \end{itemize}
+\end{itemize}
+
+\textbf{What's needed?}
+\begin{itemize}
+    \item In many cases
+        \begin{itemize}
+            \item Everybody wants to run the same code
+            \item Everybody wants to access the same data
+            \item Everybody has the same privileges
+            \item Everybody uses the same resources (open files, network connections, etc.)
+        \end{itemize}
+    \item But you'd like to have multiple hardware execution states:
+        \begin{itemize}
+            \item an execution stack and SP
+                \begin{itemize}
+                    \item traces state of procedure calls made
+                \end{itemize}
+            \item the PC, indicating the next instruction
+            \item a set of general-purpose processor registers and their values
+        \end{itemize}
+\end{itemize}
+
+\textbf{How could we achieve this?}
+\begin{itemize}
+    \item Given the process abstraction as we know it:
+        \begin{itemize}
+            \item for several processes
+            \item cause each to \emph{map} to the \emph{same} physical memory to share data
+                (\texttt{shmget}),
+        \end{itemize}
+    \item This is really inefficient
+        \begin{itemize}
+            \item space: PCB, page tables, etc.
+            \item time: creating OS structures, fork/copy address space, etc.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Can we do better?}
+\begin{itemize}
+    \item Key idea:
+        \begin{itemize}
+            \item separate the concept of a \emph{process} (address space, OS resources)
+            \item \dots from that of a minimal \emph{thread of control}
+                (execution state: stack, SP, PC, registers),
+        \end{itemize}
+    \item This execution state is usually called a \emph{thread}, or a
+        \emph{lightweight process}.
+\end{itemize}
+
+\textbf{Threads and processes}
+\begin{itemize}
+    \item Most modern OS\emph{s} support two entities:
+        \begin{itemize}
+            \item the \emph{process}, which defines the address space and general process
+                attributes (such as open files, etc.)
+            \item the \emph{thread}, which defines a sequential execution stream within a
+                process.
+        \end{itemize}
+    \item A thread is bound to a single process / address space
+        \begin{itemize}
+            \item address spaces, however, can have multiple threads executing within them
+            \item sharing data between threads is cheap: all see the same address space
+            \item creating threads is cheap, too!
+        \end{itemize}
+    \item \emph{Threads become the unit of scheduling}
+        \begin{itemize}
+            \item processes / address spaces are just \emph{containers} in which threads
+                execute.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Single and Multi-threaded Processes}
+\begin{itemize}
+    \item Different threads in the same process have separate registers and stacks.
+    \item This is cheaper than duplicating the instructions and PCB etc.,
+        as required by having multiple processes.
+\end{itemize}
+
+\subsection{Concurrency}
+
+\textbf{Communication}
+\begin{itemize}
+    \item Threads are concurrent executions sharing an address space (and some OS resources)
+    \item Address spaces provide isolation
+        \begin{itemize}
+            \item If you can't name an object, you can't read or write to it
+        \end{itemize}
+    \item Hence, communicating between processes is expensive
+        \begin{itemize}
+            \item Must go through the OS to move data from one address space to another
+        \end{itemize}
+    \item Because threads are in the same address space, communication is simple/cheap
+        \begin{itemize}
+            \item Just update a shared variable!
+        \end{itemize}
+\end{itemize}
+
+\textbf{The design space}
+\includegraphics[height=280]{the-design-space}
+
+\textbf{Process address space}
+\includegraphics[height=280]{process-address-space}
+\includegraphics[height=280]{process-address-space-threads}
+
+\subsection{Design space of process/threads}
+
+\textbf{Process/thread separation}
+\begin{itemize}
+    \item Concurrency (multi-threading) is useful for:
+        \begin{itemize}
+            \item handling concurrent events (e.g.\ web servers and clients)
+            \item building parallel programs (e.g.\ matrix multiply, ray tracing)
+            \item improving program structure (the Java argument),
+        \end{itemize}
+    \item Multi-threading is useful even on a uniprocessor
+        \begin{itemize}
+            \item even though only one thread can run at a time
+        \end{itemize}
+    \item Supporting multi-threading --- that is, separating the concept of a \emph{process}
+        (address space, files, etc.) from that of a minimal \emph{thread of control}
+        (execution state), is a big win
+        \begin{itemize}
+            \item creating concurrency does not require creating new processes
+            \item ``faster / better / cheaper''
+        \end{itemize}
+\end{itemize}
+
+\subsection{Kernel threads}
+
+\textbf{Where do threads come from?}
+\begin{itemize}
+    \item Natural answer: the OS is responsible for creating/managing threads \\
+        For example, the kernel call to create a new thread would
+        \begin{itemize}
+            \item allocate an execution stack within the process address space
+            \item create and initialize a \emph{Thread Control block} \\
+                (SP, PC, register values)
+            \item stick it on the ready queue
+        \end{itemize}
+    \item We call these \emph{kernel threads} \\
+        There is a ``thread name space''
+        \begin{itemize}
+            \item Thread IDs (TIDs)
+            \item TIDs are integers
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=280]{kernel-threads}
+
+\textbf{Kernel Threads}
+\begin{itemize}
+    \item OS now manages threads \emph{and} processes / address spaces
+        \begin{itemize}
+            \item all thread operations are implemented in the kernel
+            \item OS schedules all of the threads in a system
+                \begin{itemize}
+                    \item if one thread in a process blocks (e.g.\ on I/O),
+                        the OS knows about it, and can run other threads from that process
+                    \item possible to overlap I/O and computation \emph{inside} a process
+                \end{itemize}
+        \end{itemize}
+    \item Kernel threads are cheaper than processes
+        \begin{itemize}
+            \item less state to allocate and initialise
+        \end{itemize}
+    \item But, they're still pretty expensive for fine-grained use
+        \begin{itemize}
+            \item orders of magnitude more expensive than a procedure call
+            \item thread operations are all \emph{system calls}
+                \begin{itemize}
+                    \item context switch
+                    \item argument checks
+                \end{itemize}
+            \item must maintain kernel state for each thread
+        \end{itemize}
+\end{itemize}
+
+\subsection{User-level threads}
+
+\textbf{Cheaper alternative}
+\begin{itemize}
+    \item There is an alternative to kernel threads
+    \item Threads can also be managed at the user level (within the process)
+        \begin{itemize}
+            \item a library linked into the program manages the threads
+                \begin{itemize}
+                    \item the thread manager doesn't need to manipulate address spaces
+                        (which only the kernel can do)
+                    \item threads differ (roughly) only in hardware contexts
+                        (PC, SP, registers), which can be manipulated by user-level code
+                    \item the \emph{thread package} multiplexes user-level threads on top
+                        of kernel threads
+                    \item each kernel thread is treated as a \emph{virtual processor}
+                \end{itemize}
+            \item we call these \emph{user-level threads}
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=280]{user-level-threads}
+
+\textbf{User-level threads}
+\begin{itemize}
+    \item User-level threads are small and fast
+        \begin{itemize}
+            \item managed entirely by user-level library (e.g.\ \texttt{pthreads})
+            \item each thread is represented by a PC, registers, a stack, and a small
+                \emph{thread control block} (TCB)
+            \item creating a thread, switching between threads, and synchronising
+                threads are done \emph{via procedure calls}
+                \begin{itemize}
+                    \item no kernel involvement necessary!
+                \end{itemize}
+        \end{itemize}
+    \item User-level thread operations can be 10--100x faster than kernel threads as a result.
+\end{itemize}
+
+\textbf{User-level thread implementation}
+\begin{itemize}
+    \item The OS schedules the kernel thread
+    \item The kernel thread executes user code, including the thread support library
+        and its associated thread scheduler
+    \item The thread scheduler determines when a user-level thread runs
+        \begin{itemize}
+            \item it uses queues to keep track of what threads are doing: run, ready, wait
+                \begin{itemize}
+                    \item just like the OS and processes
+                    \item but, implemented at user-level as a library
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Thread context switch}
+\begin{itemize}
+    \item Very simple for user-level threads:
+        \begin{itemize}
+            \item save context of currently running thread
+                \begin{itemize}
+                    \item push CPU state onto thread stack
+                \end{itemize}
+            \item restore context of the next thread
+                \begin{itemize}
+                    \item pop CPU state from next thread's stack
+                \end{itemize}
+            \item return as the new thread
+                \begin{itemize}
+                    \item execution resume at PC of next thread
+                \end{itemize}
+            \item Note: no changes to memory mapping required
+        \end{itemize}
+    \item This is all done in assembly language
+        \begin{itemize}
+            \item it works at the level of the procedure calling convention
+        \end{itemize}
+\end{itemize}
+
+\textbf{How to keep a user-level thread from hogging the CPU?}
+\begin{itemize}
+    \item Strategy 1: force everyone to cooperate
+        \begin{itemize}
+            \item a thread willingly gives up the CPU by calling \texttt{yield}
+            \item \texttt{yield} calls into the scheduler, which context switches to
+                another ready thread
+            \item what happens if a thread never calls \texttt{yield}?
+        \end{itemize}
+    \item Strategy 2: use presumption
+        \begin{itemize}
+            \item scheduler requests that a timer interrupt be delivered by the OS
+                periodically
+                \begin{itemize}
+                    \item usually delivered as a UNIX signal (\texttt{man signal})
+                    \item signals are just like software interrupts, but delivered to
+                        user-level by the OS instead of delivered to the OS by hardware
+                \end{itemize}
+            \item at each timer interrupt, scheduler gains control and context switches
+                as appropriate.
+        \end{itemize}
+\end{itemize}
+
+\textbf{What if a thread tries to do I/O}
+\begin{itemize}
+    \item The kernel thread ``powering'' it is lost for the duration of (synchronous)
+        I/O operation!
+        \begin{itemize}
+            \item The kernel thread blocks in the OS, as always
+            \item It maroons with it the state of the user-level thread
+        \end{itemize}
+    \item Could have one kernel thread ``powering'' each user-level thread
+        \begin{itemize}
+            \item ``common case'' operations (e.g.\ synchronisation) would be quick
+        \end{itemize}
+    \item Could have a limited-size ``pool'' of kernel threads ``powering'' all the
+        user-level threads in the address space
+        \begin{itemize}
+            \item the kernel will be scheduling these threads, obliviously to what's going
+                on at user-level.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Summary}
+\begin{itemize}
+    \item Multiple threads per address space
+    \item Kernel threads are much more efficient than processes, but still expensive
+        \begin{itemize}
+            \item all operations require a kernel call and parameter validation
+        \end{itemize}
+    \item User-level threads are:
+        \begin{itemize}
+            \item much cheaper and faster
+            \item great for common-case operations
+                \begin{itemize}
+                    \item creation, synchronisation, destruction
+                \end{itemize}
+            \item can suffer in uncommon cases due to kernel obliviousness
+                \begin{itemize}
+                    \item I/O
+                    \item pre-emption of a lock-holder
+                \end{itemize}
+        \end{itemize}
 \end{itemize}
 
 \end{document}

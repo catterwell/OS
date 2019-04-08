@@ -17,7 +17,8 @@
 \contentsline {section}{\numberline {4}Threads}{19}{section.4}% 
 \contentsline {subsection}{\numberline {4.1}Process vs Threads}{19}{subsection.4.1}% 
 \contentsline {subsection}{\numberline {4.2}Concurrency}{20}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Design space of process/threads}{21}{subsection.4.3}% 
-\contentsline {subsection}{\numberline {4.4}Kernel threads}{21}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}User-level threads}{22}{subsection.4.5}% 
-\contentsline {subsection}{\numberline {4.6}Summary}{23}{subsection.4.6}% 
+\contentsline {subsection}{\numberline {4.3}Design space of process/threads}{22}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Kernel threads}{22}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}User-level threads}{23}{subsection.4.5}% 
+\contentsline {subsection}{\numberline {4.6}Summary}{26}{subsection.4.6}% 
+\contentsline {section}{\numberline {5}Synchronisation}{26}{section.5}% 

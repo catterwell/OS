@@ -140,7 +140,7 @@
 \end{itemize}
 
 \begin{center}{}
-    \includegraphics[height=270]{a_kernel_crossing_illustrated}
+    \includegraphics[height=270]{a-kernel-crossing-illustrated.jpg}
 \end{center}
 
 \textbf{System call issues}
@@ -225,7 +225,7 @@
 
 \textbf{System layers}
 \begin{center}{}
-    \includegraphics[height=280]{system-layers}
+    \includegraphics[height=280]{system-layers.jpg}
 \end{center}
 
 \textbf{Major OS components}
@@ -342,18 +342,18 @@
 \end{itemize}
 
 \begin{center}{}
-    \includegraphics[height=270]{microkernel-structure-illustrated}
+    \includegraphics[height=270]{microkernel-structure-illustrated.jpg}
 \end{center}
 
 \textbf{Comparison of OS structures}
 
 Windows
 
-\includegraphics[height=270]{windows}
+\includegraphics[height=270]{windows.jpg}
 
 MINIX 3
 
-\includegraphics[height=270]{minix-3}
+\includegraphics[height=270]{minix-3.jpg}
 
 \textbf{Loadable kernel modules}
 
@@ -431,7 +431,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{a-process-address-space}
+\includegraphics[height=280]{a-process-address-space.jpg}
 
 \textbf{The OS process namespace}
 \begin{itemize}
@@ -515,7 +515,7 @@ MINIX 3
     \item Choosing which process to run next is called \emph{scheduling}.\
 \end{itemize}
 
-\includegraphics[height=280]{process-context-switch}
+\includegraphics[height=280]{process-context-switch.jpg}
 
 \textbf{Process execution states}
 \begin{itemize}
@@ -536,7 +536,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{process-states-and-state-transitions}
+\includegraphics[height=280]{process-states-and-state-transitions.jpg}
 
 \textbf{State queues}
 \begin{itemize}
@@ -634,7 +634,7 @@ MINIX 3
         The return value is used to determine whether we're the clone or the original.
 \end{itemize}
 
-\includegraphics[height=280]{fork}
+\includegraphics[height=280]{fork.jpg}
 
 \textbf{\texttt{exec} v.s.\ \texttt{fork}}
 \begin{itemize}
@@ -651,7 +651,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{exec-and-fork}
+\includegraphics[height=280]{exec-and-fork.jpg}
 
 \textbf{Method 1: \texttt{vfork}}
 \begin{itemize}
@@ -840,11 +840,13 @@ MINIX 3
 \end{itemize}
 
 \textbf{The design space}
-\includegraphics[height=280]{the-design-space}
+
+\includegraphics[height=280]{the-design-space.jpg}
 
 \textbf{Process address space}
-\includegraphics[height=280]{process-address-space}
-\includegraphics[height=280]{process-address-space-threads}
+
+\includegraphics[height=280]{process-address-space.jpg}
+\includegraphics[height=280]{process-address-space-threads.jpg}
 
 \subsection{Design space of process/threads}
 
@@ -889,7 +891,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{kernel-threads}
+\includegraphics[height=280]{kernel-threads.jpg}
 
 \textbf{Kernel Threads}
 \begin{itemize}
@@ -940,7 +942,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{user-level-threads}
+\includegraphics[height=280]{user-level-threads.jpg}
 
 \textbf{User-level threads}
 \begin{itemize}
@@ -1060,6 +1062,26 @@ MINIX 3
                     \item pre-emption of a lock-holder
                 \end{itemize}
         \end{itemize}
+\end{itemize}
+
+\section{Synchronisation}
+
+\textbf{Temporal relations}
+\begin{itemize}
+    \item User view of parallel threads
+        \begin{itemize}
+            \item Instructions executed by a single thread are totally ordered
+                \begin{itemize}
+                    \item $A < B < C < \dots$
+                \end{itemize}
+            \item In absence of \emph{synchronisation}:
+                \begin{itemize}
+                    \item instructions executed by distinct threads must be considered
+                        unordered / simultaneous
+                    \item Not $X < X'$, and not $X' < X$
+                \end{itemize}
+        \end{itemize}
+    \item Hardware largely supports this
 \end{itemize}
 
 \end{document}

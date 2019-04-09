@@ -204,6 +204,12 @@ INPUT ./pics/kernel-threads.jpg
 INPUT pics/user-level-threads.jpg
 INPUT ./pics/user-level-threads.jpg
 INPUT ./pics/user-level-threads.jpg
+INPUT pics/critical-sections.jpg
+INPUT ./pics/critical-sections.jpg
+INPUT ./pics/critical-sections.jpg
+INPUT pics/locks.jpg
+INPUT ./pics/locks.jpg
+INPUT ./pics/locks.jpg
 INPUT Notes.aux
 INPUT ./Notes.out
 INPUT ./Notes.out

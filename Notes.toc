@@ -22,3 +22,5 @@
 \contentsline {subsection}{\numberline {4.5}User-level threads}{23}{subsection.4.5}% 
 \contentsline {subsection}{\numberline {4.6}Summary}{26}{subsection.4.6}% 
 \contentsline {section}{\numberline {5}Synchronisation}{26}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Locks}{28}{subsection.5.1}% 
+\contentsline {subsection}{\numberline {5.2}Spinlocks}{29}{subsection.5.2}% 

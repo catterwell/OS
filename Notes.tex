@@ -328,17 +328,17 @@
     \item Goal:
         minimize what happens in kernel;
         item organize rest of OS as user-level processes.
-\item This results in:
-    \begin{itemize}
-        \item better reliability (isolation between components)
-        \item easy of extension and customisation
-        \item poor performance (user/kernel boundary crossings)
-    \end{itemize}
-\item First microkernel system was Hydra (CMU, 1970)
-    \begin{itemize}
-        \item Contemporaries: Mach (CMU), Chorus (French UNIX-like OS), OS X (Apple),
-            in some ways NT (Microsoft)
-    \end{itemize}
+    \item This results in:
+        \begin{itemize}
+            \item better reliability (isolation between components)
+            \item easy of extension and customisation
+            \item poor performance (user/kernel boundary crossings)
+        \end{itemize}
+    \item First microkernel system was Hydra (CMU, 1970)
+        \begin{itemize}
+            \item Contemporaries: Mach (CMU), Chorus (French UNIX-like OS), OS X (Apple),
+                in some ways NT (Microsoft)
+        \end{itemize}
 \end{itemize}
 
 \begin{center}{}
@@ -465,22 +465,22 @@ MINIX 3
 \textbf{The PCB}
 \begin{itemize}
     \item The PCB is a data structure with many, many fields
-    \begin{itemize}
-        \item PID
-        \item parent PID
-        \item execution state
-        \item PC, SP, registers
-        \item address space info
-        \item UNIX user id, group id
-        \item scheduling priority
-        \item accounting info
-        \item pointers for state queues
-    \end{itemize}
-\item In Linux:
-    \begin{itemize}
-        \item defined in \texttt{task\_struct (include/linux/sched.h)}
-        \item Over 95 fields!
-    \end{itemize}
+        \begin{itemize}
+            \item PID
+            \item parent PID
+            \item execution state
+            \item PC, SP, registers
+            \item address space info
+            \item UNIX user id, group id
+            \item scheduling priority
+            \item accounting info
+            \item pointers for state queues
+        \end{itemize}
+    \item In Linux:
+        \begin{itemize}
+            \item defined in \texttt{task\_struct (include/linux/sched.h)}
+            \item Over 95 fields!
+        \end{itemize}
 \end{itemize}
 
 \subsection{Process state \& context switch}
@@ -679,7 +679,7 @@ MINIX 3
                 (i.e.\ they both point to the same physical memory).
                 \begin{itemize}
                     \item (No copying of address space contents have occurred at this point
-                --- with the sole exception of the top page of the stack.)
+                        --- with the sole exception of the top page of the stack.)
                 \end{itemize}
             \item Set both parent and child page tables to make all pages read-only
             \item If either parent or child writes to memory, an exception occurs.
@@ -1082,6 +1082,197 @@ MINIX 3
                 \end{itemize}
         \end{itemize}
     \item Hardware largely supports this
+\end{itemize}
+
+\textbf{Critical sections / mutual exclusion}
+\begin{itemize}
+    \item Sequences of instructions that may get incorrect results if executed simultaneously
+        are called \emph{critical sections}.
+    \item \emph{Race condition} results depend on timing
+    \item \emph{Mutual exclusion} means ``not simultaneously''
+        \begin{itemize}
+            \item $A < B$ or $B < A$
+            \item We don't care which
+        \end{itemize}
+    \item Forcing mutual exclusion between two critical section executions
+        \begin{itemize}
+            \item is sufficient to ensure correct execution
+            \item guarantees ordering.
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=280]{critical-sections.jpg}
+
+\textbf{When do critical sections arise?}
+\begin{itemize}
+    \item One common pattern:
+        \begin{itemize}
+            \item read-modify-write of
+            \item a shared value (variable)
+            \item in code that can be executed by concurrent threads
+        \end{itemize}
+    \item Shared variable:
+        \begin{itemize}
+            \item Global and heap-allocated variables
+            \item NOT local variables (which are on the stack)
+        \end{itemize}
+\end{itemize}
+
+\textbf{Race conditions}
+\begin{itemize}
+    \item A program has a \emph{race condition} (data race) if the result of an
+        execution depends on timing (i.e.\ it is non-deterministic)
+    \item Typical symptoms
+        \begin{itemize}
+            \item I run it on the same data, and sometimes it prints 0 and sometimes 4
+            \item I run it on the same data, and sometimes it prints 0 and sometimes crashes
+        \end{itemize}
+\end{itemize}
+
+\textbf{Correct critical section requirements}
+\begin{itemize}
+    \item \emph{Mutual exclusion} \\
+        At most one thread is in the critical section.
+    \item \emph{Progress} \\
+        If thread $T$ is outside the critical section,
+        then $T$ cannot prevent thread $S$ from entering the critical section.
+    \item \emph{Bounded waiting} (no \emph{starvation}) \\
+        If thread $T$ is waiting on the critical section,
+        then $T$ will eventually enter the critical section
+        (assumes threads eventually leave critical sections).
+    \item \emph{Performance} \\
+        The overhead of entering and exiting the critical section is small with respect to
+        the work being done within it.
+\end{itemize}
+
+\textbf{Mechanisms for building critical sections}
+\begin{itemize}
+    \item Spinlocks
+        \begin{itemize}
+            \item primitive, minimal semantics --- used to build others
+        \end{itemize}
+    \item Semaphores (and non-spinning locks)
+        \begin{itemize}
+            \item basic, easy to understand, somewhat hard to program with
+        \end{itemize}
+    \item Monitors
+        \begin{itemize}
+            \item higher level, requires language support, implicit operations
+            \item easier to program with; Java ``\texttt{synchronised}'', for example
+        \end{itemize}
+    \item Messages
+        \begin{itemize}
+            \item Simple model of communication and synchronisation based on (atomic)
+                transfer of data across a channel
+            \item direct application to distributed systems
+        \end{itemize}
+\end{itemize}
+
+\subsection{Locks}
+
+\textbf{Locks}
+\begin{itemize}
+    \item A lock is a memory object with two operations:
+        \begin{itemize}
+            \item \texttt{acquire}: obtain the right to enter the critical section
+            \item \texttt{release}: give up the right to be in the critical section
+        \end{itemize}
+    \item \texttt{acquire} \emph{prevents the progress of the thread until the lock
+        can be acquired}.
+    \item Note: terminology varies: acquire/release, lock/unlock
+\end{itemize}
+
+\includegraphics[height=280]{locks.jpg}
+
+\textbf{Acquire/release}
+\begin{itemize}
+    \item Threads pair up calls to \texttt{acquire} and \texttt{release}
+        \begin{itemize}
+            \item between \texttt{acquire} and \texttt{release}, the thread \emph{holds}
+                the lock
+            \item \texttt{acquire} does not return until the caller ``owns'' (holds) the lock
+                \begin{itemize}
+                    \item at most one thread can hold a lock at a time
+                \end{itemize}
+        \end{itemize}
+    \item What happens if the calls aren't paired
+        \begin{itemize}
+            \item I acquire, but neglect to release?
+        \end{itemize}
+    \item What happens if the two threads acquire different locks
+        \begin{itemize}
+            \item I think that access to a particular shared data structure is
+                mediated by lock A, and you think it's mediated by lock B?\
+        \end{itemize}
+    \item What is the right granularity of locking?
+\end{itemize}
+
+\subsection{Spinlocks}
+
+\textbf{Spinlocks}
+\begin{itemize}
+    \item How do we implement spinlocks?
+        Here's one attempt:
+        \begin{verbatim}
+    struct lock_t {
+        int held = 0;
+    }
+    void acquire(lock) {
+        while (lock->held);
+        lock->held = 1;
+    }
+    void release(lock) {
+        lock->held = 0;
+    }
+        \end{verbatim}
+    \item Race condition in acquire.
+\end{itemize}
+
+\textbf{Implementing spinlocks}
+\begin{itemize}
+    \item Problem is that implementation of spinlocks has critical sections, too!
+        \begin{itemize}
+            \item the acquire/release must be \emph{atomic}
+            \item compiler can hoist code that is invariant
+        \end{itemize}
+    \item Need help from the hardware
+        \begin{itemize}
+            \item atomic instructions \\
+                test-and-set, compare-and-swap, \dots
+        \end{itemize}
+\end{itemize}
+
+\textbf{Spinlocks: Hardware Test-and-Set}
+\begin{itemize}
+    \item CPU provides the following as \emph{one atomic instruction}:
+        \begin{verbatim}
+    bool test_and_set(bool *flag) {
+        bool old = *flag;
+        *flag = True;
+        return old;
+    }
+        \end{verbatim}
+    \item This is a single \emph{atomic} instruction
+\end{itemize}
+
+\textbf{Implementing spinlocks using Test-and-Set}
+\begin{itemize}
+    \item So, to fix our broken spinlocks:
+        \begin{verbatim}
+    struct lock{
+        int held = 0;
+    }
+    void acquire(lock) {
+        while (test_and_set(&lock->held));
+    }
+    void release(lock) {
+        lock->held = 0;
+    }
+        \end{verbatim}
+    \item \emph{mutual exclusion?} (at most one thread in the critical section)
+    \item \emph{progress?} ($T$ outside cannot prevent $S$ from entering)
+    \item \emph{bounded waiting?} (waiting $T$ will eventually enter)
+    \item \emph{performance?} (low overhead (modulo the spinning part\dots))
 \end{itemize}
 
 \end{document}

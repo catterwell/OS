@@ -225,7 +225,7 @@
 
 \textbf{System layers}
 \begin{center}{}
-    \includegraphics[height=280]{system-layers.jpg}
+    \includegraphics[height=270]{system-layers.jpg}
 \end{center}
 
 \textbf{Major OS components}
@@ -431,7 +431,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{a-process-address-space.jpg}
+\includegraphics[height=270]{a-process-address-space.jpg}
 
 \textbf{The OS process namespace}
 \begin{itemize}
@@ -515,7 +515,7 @@ MINIX 3
     \item Choosing which process to run next is called \emph{scheduling}.\
 \end{itemize}
 
-\includegraphics[height=280]{process-context-switch.jpg}
+\includegraphics[height=270]{process-context-switch.jpg}
 
 \textbf{Process execution states}
 \begin{itemize}
@@ -536,7 +536,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{process-states-and-state-transitions.jpg}
+\includegraphics[height=270]{process-states-and-state-transitions.jpg}
 
 \textbf{State queues}
 \begin{itemize}
@@ -634,7 +634,7 @@ MINIX 3
         The return value is used to determine whether we're the clone or the original.
 \end{itemize}
 
-\includegraphics[height=280]{fork.jpg}
+\includegraphics[height=270]{fork.jpg}
 
 \textbf{\texttt{exec} v.s.\ \texttt{fork}}
 \begin{itemize}
@@ -651,7 +651,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{exec-and-fork.jpg}
+\includegraphics[height=270]{exec-and-fork.jpg}
 
 \textbf{Method 1: \texttt{vfork}}
 \begin{itemize}
@@ -841,12 +841,13 @@ MINIX 3
 
 \textbf{The design space}
 
-\includegraphics[height=280]{the-design-space.jpg}
+\includegraphics[height=270]{the-design-space.jpg}
 
 \textbf{Process address space}
 
-\includegraphics[height=280]{process-address-space.jpg}
-\includegraphics[height=280]{process-address-space-threads.jpg}
+\includegraphics[height=270]{process-address-space.jpg}
+
+\includegraphics[height=270]{process-address-space-threads.jpg}
 
 \subsection{Design space of process/threads}
 
@@ -891,7 +892,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{kernel-threads.jpg}
+\includegraphics[height=270]{kernel-threads.jpg}
 
 \textbf{Kernel Threads}
 \begin{itemize}
@@ -942,7 +943,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{user-level-threads.jpg}
+\includegraphics[height=270]{user-level-threads.jpg}
 
 \textbf{User-level threads}
 \begin{itemize}
@@ -1101,7 +1102,7 @@ MINIX 3
         \end{itemize}
 \end{itemize}
 
-\includegraphics[height=280]{critical-sections.jpg}
+\includegraphics[height=270]{critical-sections.jpg}
 
 \textbf{When do critical sections arise?}
 \begin{itemize}
@@ -1182,7 +1183,7 @@ MINIX 3
     \item Note: terminology varies: acquire/release, lock/unlock
 \end{itemize}
 
-\includegraphics[height=280]{locks.jpg}
+\includegraphics[height=270]{locks.jpg}
 
 \textbf{Acquire/release}
 \begin{itemize}
@@ -1268,11 +1269,564 @@ MINIX 3
     void release(lock) {
         lock->held = 0;
     }
+    \end{verbatim}
+\item \emph{mutual exclusion?} (at most one thread in the critical section)
+\item \emph{progress?} (\texttt{T} outside cannot prevent \texttt{S} from entering)
+\item \emph{bounded waiting?} (waiting \texttt{T} will eventually enter)
+\item \emph{performance?} (low overhead (modulo the spinning part\dots))
+\end{itemize}
+
+\section{Semaphores, Condition Variables, and Monitors}
+
+\subsection{Semaphore}
+
+\textbf{Semaphore}
+\begin{itemize}
+    \item More sophisticated synchronisation mechanism
+    \item Semaphore \texttt{S} --- integer variable
+    \item Can only be accessed via two atomic operations: \texttt{wait} and \texttt{signal}
+        (originally called \texttt{P} and \texttt{V}).
+    \item Definitions
+        \begin{verbatim}
+    wait(S) {
+        while (S <= 0); // busy wait
+        S--;
+    }
+    signal(S) {
+        S++;
+    }
         \end{verbatim}
-    \item \emph{mutual exclusion?} (at most one thread in the critical section)
-    \item \emph{progress?} ($T$ outside cannot prevent $S$ from entering)
-    \item \emph{bounded waiting?} (waiting $T$ will eventually enter)
-    \item \emph{performance?} (low overhead (modulo the spinning part\dots))
+    \item These are performed \emph{atomically}
+\end{itemize}
+
+\textbf{Semaphore Usage}
+\begin{itemize}
+    \item \emph{Counting semaphore}: integer value can range over an unrestricted domain
+    \item \emph{Binary semaphore}: integer value can range only between 0 and 1
+        (same as \emph{lock})
+    \item Can solve various synchronisation problems
+    \item Consider $\texttt{P}_1$ and $\texttt{P}_2$ that require $\texttt{S}_1$ to
+        happen before $\texttt{S}_2$ \\
+        Create a semaphore ``\texttt{synch}'' initialised to 0
+        \begin{verbatim}
+    P1:
+        S_1;
+        signal(synch);
+    P2:
+        wait(synch);
+        S_2;
+        \end{verbatim}
+    \item Can implement a counting semaphore \texttt{S} as a binary semaphore.
+\end{itemize}
+
+\textbf{Implementation with no Busy waiting}
+
+Each semaphore has an associated queue of threads
+\begin{verbatim}
+    wait(semaphore *S) {
+        S->value--;
+        if (S->value < 0) {
+            add this thread to S->list;
+            block();
+        }
+    }
+    signal(semaphore *S) {
+        S->value++;
+        if (S->value <= 0) {
+            remove a thread T from S->list;
+            wakeup(T);
+        }
+    }
+\end{verbatim}
+
+\underline{Examples}
+
+\includegraphics[height=270]{bounded-buffer-using-semaphores.jpg}
+
+\includegraphics[height=270]{readers-writers-using-semaphores.jpg}
+
+\textbf{Semaphores v.s.\ Spinlocks}
+\begin{itemize}
+    \item Threads that are blocked at the level of program logic
+        (that is, by the semaphore \texttt{P} operation)
+        are placed on queues, rather than busy-waiting.
+    \item Busy-waiting may be used for the ``real'' mutual exclusion required to implement
+        \texttt{P} and \texttt{V}
+        \begin{itemize}
+            \item but these are very short critical sections ---
+                totally independent of program logic
+            \item and they are not implemented by the application programmer.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Abstract implementation}
+\begin{itemize}
+    \item \texttt{P\,(sem)}
+        \begin{itemize}
+            \item acquire ``real'' mutual exclusion
+                \begin{itemize}
+                    \item if \texttt{sem} is ``available'' (> 0), decrement sum;
+                        \emph{release ``real'' mutual exclusion};
+                        let thread continue
+                    \item otherwise,  place thread on associated queue;
+                        \emph{release ``real'' mutual exclusion};
+                        run some other thread.
+                \end{itemize}
+        \end{itemize}
+\item \texttt{V\,(sem)}
+    \begin{itemize}
+        \item \emph{acquire ``real'' mutual exclusion}
+            \begin{itemize}
+                \item if threads are waiting on the associated queue,
+                    unblock one (place it on the ready queue)
+                \item if no threads are on the queue, \texttt{sem} is incremented \\
+                    the signal is ``remembered'' for the next time \texttt{P\,(sem)} is called
+            \end{itemize}
+        \item release ``real'' mutual exclusion
+        \item the ``\texttt{V}-ing'' thread continues execution.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Problems with semaphores, locks}
+\begin{itemize}
+    \item They can be used to solve any of the traditional synchronisation problems,
+        but it's easy to make mistakes
+        \begin{itemize}
+            \item they are essentially shared global variables
+                \begin{itemize}
+                    \item can be accessed from anywhere (bad software engineering)
+                \end{itemize}
+            \item there is no connection between the synchronisation variable and the
+                data being controlled by it
+            \item no control over their use, no guarantee of proper usage
+                \begin{itemize}
+                    \item Semaphores: will here ever be a \texttt{V\,()}?
+                    \item Locks: did you lock when necessary?
+                        Unlock at the right time?
+                        At all?
+                \end{itemize}
+        \end{itemize}
+    \item Thus, they are prone to bugs
+        \begin{itemize}
+            \item We can reduce the chance of bugs by ``stylising'' the use of synchronisation
+            \item Language help is useful for this.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Monitors}
+
+\textbf{Monitors}
+\begin{itemize}
+    \item A \underline{programming language construct} supports controlled shared data access
+        \begin{itemize}
+            \item synchronisation code is added by the compiler.
+        \end{itemize}
+    \item A class in which every method automatically acquires a lock on entry,
+        and releases it on exit --- it combines:
+        \begin{itemize}
+            \item \emph{shared data} structures (object);
+            \item \emph{procedures} that operate on the shared data (object methods);
+            \item \emph{synchronisation} between concurrent threads that invoke those
+                procedures.
+        \end{itemize}
+    \item Data can only be accessed from within the monitor
+        \begin{itemize}
+            \item protects the data from unstructured access;
+            \item prevents ambiguity about what the synchronisation variable protects.
+        \end{itemize}
+    \item Addresses the key usability issues that arise with semaphores.
+\end{itemize}
+
+\includegraphics[height=270]{a-monitor.jpg}
+
+\textbf{Monitor facilities}
+\begin{itemize}
+    \item ``Automatic'' mutual exclusion
+        \begin{itemize}
+            \item only one thread can be executing inside at any time
+                \begin{itemize}
+                    \item thus, synchronisation is implicitly associated with the monitor
+                        --- it ``comes for free'';
+                \end{itemize}
+            \item if a second thread tries to execute a monitor procedure,
+                it blocks until the first has left the monitor;
+                \begin{itemize}
+                    \item more restrictive than semaphores,
+                    \item but easier to use (most of the time).
+                \end{itemize}
+        \end{itemize}
+    \item But, there's a problem\dots \\
+        Bounded buffer scenario.
+\end{itemize}
+
+\textbf{Bounded Buffer scenario}
+\begin{itemize}
+    \item Monitors require condition variables
+    \item Operations on condition varibales
+        \begin{itemize}
+            \item \texttt{wait\,(c)}
+                \begin{itemize}
+                    \item release monitor lock, so somebody else can get in
+                    \item wait for somebody else to signal condition
+                    \item thus, condition variables have associated wait queues
+                \end{itemize}
+            \item \texttt{signal\,(c)}
+                \begin{itemize}
+                    \item wake up at most one waiting thread
+                        \begin{itemize}
+                            \item ``Hoare'' monitor: wakeup immediately, signaller steps
+                                outside
+                        \end{itemize}
+                    \item if no waiting threads, signal is lost
+                        \begin{itemize}
+                            \item this is different from semaphores --- no history!
+                        \end{itemize}
+                \end{itemize}
+            \item \texttt{broadcast\,(c)}
+                \begin{itemize}
+                        \item wake up all waiting threads.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Bounded buffer using (Hoare) monitors}
+\begin{verbatim}
+    Monitor bounded_buffer {
+        buffer resources[];
+        condition not_full;
+        condition not_empty;
+
+        produce(resource x) {
+            if (array "resources" is full, determined maybe by a count) {
+                wait(not_full);
+            }
+            insert "x" in array "resources";
+            signal(not_empty);
+        }
+
+        consume(resource *x) {
+            if (array "resources" is empty, determined maybe by a count) {
+                wait(not_empty);
+            }
+            *x = get resource from array "resources";
+            signal(not_full);
+        }
+    }
+\end{verbatim}
+
+\textbf{Runtime system calls for (Hoare) monitors}
+\begin{itemize}
+    \item \texttt{EnterMonitor\,(m)} \{guarantee mutual exclusion\}
+    \item \texttt{ExitMonitor\,(m)} \{hit the road, letting someone else run\}
+    \item \texttt{Wait\,(c)} \{step out until condition satisfied\}
+    \item \texttt{Signal\,(c)} \{if someone's waiting, step out and let them run\}
+    \item \texttt{EnterMonitor} and \texttt{ExitMonitor} are inserted automatically by the
+        compiler.
+    \item This guarantees mutual exclusion for code inside of the monitor.
+\end{itemize}
+
+\textbf{Monitor Summary}
+\begin{itemize}
+    \item Language supports monitors
+    \item Compiler understands them
+        \begin{itemize}
+            \item Compiler inserts calls to runtime routines for
+                \begin{itemize}
+                    \item monitor entry
+                    \item monitor exit
+                \end{itemize}
+            \item Programmer inserts calls to runtime routines for
+                \begin{itemize}
+                    \item signal
+                    \item wait
+                \end{itemize}
+            \item Language/object encapsulation ensures correctness
+                \begin{itemize}
+                    \item Sometimes!
+                        With conditions, you \emph{still} need to think about synchronisation
+                \end{itemize}
+        \end{itemize}
+    \item Runtime system implements these routines
+        \begin{itemize}
+            \item moves threads on and off queues
+            \item \emph{ensures mutual exclusion!}
+        \end{itemize}
+\end{itemize}
+
+\section{Deadlock}
+
+\textbf{Definition}
+\begin{itemize}
+    \item A thread is deadlocked when it's waiting for an event that can never occur
+    \item Thread \texttt{A} is in critical section 1 \\
+        waiting for access to critical section 2;
+    \item Thread \texttt{B} is in critical section 2 \\ waiting for access to critical section 1
+\end{itemize}
+
+\textbf{Four conditions must exist for deadlock to be possible}
+\begin{enumerate}
+    \item Mutual exclusion
+    \item Hold and wait
+    \item No pre-emption
+    \item Circular wait
+\end{enumerate}
+
+\includegraphics[height=270]{deadlock.jpg}
+
+\subsection{Graph reduction}
+
+\textbf{Graph reduction}
+\begin{itemize}
+    \item A graph can be \emph{reduced} by a thread if all of that thread's requests
+        can be granted
+        \begin{itemize}
+            \item in this case, the thread eventually will terminate --- all resources are
+                freed --- all arcs (allocations) to/from it in the graph are deleted.
+        \end{itemize}
+    \item Miscellaneous theorems (Holt, Havender):
+        \begin{itemize}
+            \item There are no deadlocked threads if and only if the graph is completely
+                reducible.
+            \item The order of reductions is irrelevant.
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{resource-allocation-graph-with-a-deadlock.jpg}
+
+\textbf{Handling deadlock}
+\begin{itemize}
+    \item Eliminate one of the four required conditions
+        \begin{itemize}
+            \item Mutual exclusion
+            \item Hold and Wait
+            \item No pre-emption
+            \item Circular wait
+        \end{itemize}
+    \item Broadly classified as:
+        \begin{itemize}
+            \item Prevention, or
+            \item Avoidance, or
+            \item Detection (and recovery)
+        \end{itemize}
+\end{itemize}
+
+\textbf{Deadlock prevention} \\
+Restrain the ways requests can be made
+\begin{itemize}
+    \item Mutual exclusion \\
+        not required for sharable resources (e.g.\ read-only files);
+        must hold for non-sharable resources.
+    \item Hold and wait \\
+        must guarantee that whenever a process requests a resources,
+        it does not hold any other resources.
+        \begin{itemize}
+            \item Low resources utilisation; starvation is possible.
+        \end{itemize}
+    \item No (resource) Pre-emption
+        \begin{itemize}
+            \item If a process holding some resources requests another unavailable resource
+                all resources currently held are released.
+            \item Process will be restarted only when it can regain its old resources,
+                as well as the new ones that it is requesting.
+        \end{itemize}
+    \item Circular wait
+        \begin{itemize}
+            \item impose a total ordering of all resource types, and require that each process
+                requests resources in an increasing order of enumeration.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Avoidance} \\
+Less severe restrictions on program behaviour.
+\begin{itemize}
+    \item Eliminating circular wait
+        \begin{itemize}
+            \item each thread states its maximum claim for every resource type;
+            \item system runs the Banker's Algorithm at each allocation request \\
+                Banker $\implies$ highly conservative
+        \end{itemize}
+\end{itemize}
+
+\subsection{Banker's Algorithm}
+
+\textbf{Banker's Algorithm example}
+\begin{itemize}
+    \item Background
+        \begin{itemize}
+            \item The set of controlled resources is known to the system.
+            \item The number of units of each resource is known to the system.
+            \item Each application must declare its maximum possible requirement of each
+                resource type.
+        \end{itemize}
+    \item The, the system can do the following:
+        \begin{itemize}
+            \item When a request is made:
+                \begin{itemize}
+                    \item pretend you granted it;
+                    \item pretend all other legal requests were made;
+                    \item can the graph be reduced?
+                        \begin{itemize}
+                            \item If so: allocate the requested resource.
+                            \item If not, block the thread until some thread releases resources,
+                                and then try pretending again.
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Safe state}
+\begin{itemize}
+    \item When requesting an available resource decide if allocation leaves the system in a
+        safe state
+    \item We're in a \emph{safe state} if there exists a sequence $<P_1, P_2, \ldots, P_n>$
+        of \emph{all} the processes in the systems
+        \begin{itemize}
+            \item such that for each $P_i$, the resources that $P_i$ can still request can be
+                satisfied by currently available resources + resources held by all the $P_j$,
+                with $j < i$.
+        \end{itemize}
+    \item That is:
+        \begin{itemize}
+            \item If $P_i$ resource needs are not immediately available, then $P_i$
+                can wait until all $P_j$ have finished.
+            \item When $P_j$ is finished, $P_i$ can obtain needed resources, execute, return
+                allocated resources, and terminate.
+            \item When $P_i$ terminates, $P_{i+1}$ can obtain its needed resources, and so on.
+        \end{itemize}
+\end{itemize}
+Safe $\implies$ no deadlock; \quad deadlock $\implies$ unsafe
+
+\textbf{Data Structures for the Banker's Algorithm}
+Let \texttt{n} = number of processes, and \texttt{m} = number of resource types.
+\begin{itemize}
+    \item \texttt{Available}: Vector of length \texttt{m}.
+        If \texttt{Available[j]} = \texttt{k}, there are \texttt{k} instances of resource type
+    $\texttt{R}_\texttt{j}$ available.
+    \item \texttt{Max} $\texttt{n} \times \texttt{m}$ matrix.
+        If \texttt{Allocation[i,j]} = \texttt{k}, then $P_i$ is currently allocated
+        \texttt{k} instances of $\texttt{R}_\texttt{j}$
+    \item \texttt{Allocation}: $\texttt{n} \times \texttt{m}$ matrix.
+        If \texttt{Need[i,j]} = \texttt{k}, then $\texttt{P}_\texttt{i}$ may need \texttt{k}
+        more instances of $\texttt{R}_\texttt{j}$ to complete its task.
+\end{itemize}
+\[
+    \texttt{Need[i,j]} = \texttt{Max[i,j]} - \texttt{Allocation[i,j]}
+\]
+
+\textbf{Safety Algorithm}
+\begin{enumerate}
+    \item Let \texttt{Work} and \texttt{Finish} be vectors of length \texttt{m} and \texttt{n},
+        respectively.
+        Initialise: \\
+    \texttt{Work = Available} \\
+    \texttt{Finish[i] = false for i = 0..n-1}
+\item Find an \texttt{i} such that both:
+    \begin{enumerate}
+        \item \texttt{Finish[i] == false}
+        \item $\texttt{Need}_\texttt{i} \texttt{ <= Work}$
+    \end{enumerate}
+    If no such \texttt{i} exists, go to step 4
+\item \texttt{Work = Work + Allocation} \\
+    \texttt{Finish[i] = true} \\
+    go to step 2
+\item If \texttt{Finish[i] == true, for all i,}
+    then the system is in a safe state.
+\end{enumerate}
+
+\textbf{Resource-Request Algorithm for Process $\texttt{P}_\texttt{i}$} \\
+$\texttt{Request}_\texttt{i}$ = request vector for process $\texttt{P}_\texttt{i}$.
+If $\texttt{Request}_\texttt{i}\texttt{[j] == k}$
+then process $\texttt{P}_\texttt{i}$ wants \texttt{k} instances of resource type
+$\texttt{R}_\texttt{j}$.
+\begin{enumerate}
+    \item If $\texttt{Request}_\texttt{i} \texttt{ <= Need}_\texttt{i}$ go to step 2.
+        Otherwise raise error condition, since process has exceeded its maximum claim.
+    \item If $\texttt{Request}_\texttt{i} \texttt{ <= Available}$, go to step 3.
+        Otherwise $\texttt{P}_\texttt{i}$ must wait, since resources are not available.
+    \item Pretend to allocate requested resources to $\texttt{P}_\texttt{i}$ by modifying
+        the state as follows: \\
+        $\texttt{Available = Available - Request}$ \\
+        $\texttt{Allocation}_\texttt{i} \texttt{ =
+        Allocation}_\texttt{i} \texttt{ + Request}_\texttt{i}$ \\
+        $\texttt{Need}_\texttt{i} \texttt{ = Need}_\texttt{i} \texttt{ - Request}_\texttt{i}$
+        \begin{enumerate}
+            \item If safe, then resources allocated to $\texttt{P}_\texttt{i}$
+            \item If unsafe, then $\texttt{P}_\texttt{i}$ must wait,
+                and the old resource-allocation state is restored.
+        \end{enumerate}
+\end{enumerate}
+
+\textbf{Deadlock Detection}
+\begin{enumerate}
+    \item Allow system to enter deadlock state
+    \item Detection algorithm
+    \item Recovery scheme
+\end{enumerate}
+
+\textbf{Single instance of each resource type}
+\begin{itemize}
+    \item Maintain a \emph{wait-for} graph
+        \begin{itemize}
+            \item Nodes are processes
+            \item $\texttt{P}_\texttt{i} \to \texttt{P}_\texttt{j}$ if $\texttt{P}_\texttt{i}$
+                is waiting for $\texttt{P}_\texttt{j}$
+        \end{itemize}
+    \item Periodically invoke an algorithm that searches for a cycle in the graph.
+        \begin{itemize}
+            \item If there is a cycle, there exists a deadlock.
+        \end{itemize}
+    \item An algorithm to detect a cycle in a graph
+        \begin{itemize}
+            \item has runtime complexity $\mathcal{O}(n^2)$ with $n$ being the number of
+                vertices in the graph.
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{resource-allocation-graph-and-wait-for-graph.jpg}
+
+\textbf{Detection-Algorithm usage}
+\begin{itemize}
+    \item When, and how often to invoke depends on:
+        \begin{itemize}
+            \item How often a deadlock is likely to occur?
+            \item How many processes will need to be rolled back?
+                \begin{itemize}
+                    \item One for each disjoint cycle.
+                \end{itemize}
+        \end{itemize}
+    \item If detection algorithm is invoked arbitrarily:
+        \begin{itemize}
+            \item there may be many cycles in the resource graph
+            \item we would not be able to tell which deadlocked processes ``caused'' the
+                deadlock.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Recovery from deadlock}
+\begin{itemize}
+    \item Process termination
+        \begin{itemize}
+            \item Abort all deadlocked processes
+            \item Abort one process at a time until the deadlock cycle is eliminated
+            \item In which order should we choose to abort?
+        \end{itemize}
+    \item Resource pre-emption
+        \begin{itemize}
+            \item \emph{Select a victim} --- minimise cost
+            \item \emph{Rollback} --- return to some safe state,
+                restart process for that state.
+            \item \emph{Starvation} --- same process may always be picked as victim,
+                include number of rollback in cost factor.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Summary}
+\begin{itemize}
+    \item Deadlock is bad!
+    \item We can deal with it either statically (prevention)
+        or dynamically (avoidance and/or detection)
+    \item In practice, you'll encounter lock ordering, periodic deadlock detection/correction,
+        and minefields.
 \end{itemize}
 
 \end{document}

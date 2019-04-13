@@ -24,3 +24,9 @@
 \BOOKMARK [1][-]{section.5}{Synchronisation}{}% 24
 \BOOKMARK [2][-]{subsection.5.1}{Locks}{section.5}% 25
 \BOOKMARK [2][-]{subsection.5.2}{Spinlocks}{section.5}% 26
+\BOOKMARK [1][-]{section.6}{Semaphores, Condition Variables, and Monitors}{}% 27
+\BOOKMARK [2][-]{subsection.6.1}{Semaphore}{section.6}% 28
+\BOOKMARK [2][-]{subsection.6.2}{Monitors}{section.6}% 29
+\BOOKMARK [1][-]{section.7}{Deadlock}{}% 30
+\BOOKMARK [2][-]{subsection.7.1}{Graph reduction}{section.7}% 31
+\BOOKMARK [2][-]{subsection.7.2}{Banker's Algorithm}{section.7}% 32

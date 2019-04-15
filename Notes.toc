@@ -1,32 +1,38 @@
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}% 
-\contentsline {section}{\numberline {2}Operating System Structure}{2}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Architectural impact}{2}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}User operating interaction}{2}{subsection.2.2}% 
-\contentsline {subsubsection}{\numberline {2.2.1}User v.s.\ kernel}{2}{subsubsection.2.2.1}% 
-\contentsline {subsubsection}{\numberline {2.2.2}Syscall}{3}{subsubsection.2.2.2}% 
-\contentsline {subsection}{\numberline {2.3}Operating System structure}{4}{subsection.2.3}% 
-\contentsline {subsubsection}{\numberline {2.3.1}Layers}{4}{subsubsection.2.3.1}% 
-\contentsline {subsubsection}{\numberline {2.3.2}Examples}{6}{subsubsection.2.3.2}% 
-\contentsline {subsection}{\numberline {2.4}Summary}{9}{subsection.2.4}% 
-\contentsline {section}{\numberline {3}Processes}{10}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Process}{10}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Process control block}{11}{subsection.3.2}% 
-\contentsline {subsection}{\numberline {3.3}Process state \& context switch}{12}{subsection.3.3}% 
-\contentsline {subsection}{\numberline {3.4}Process creation and termination}{14}{subsection.3.4}% 
-\contentsline {subsection}{\numberline {3.5}Summary}{17}{subsection.3.5}% 
-\contentsline {section}{\numberline {4}Threads}{18}{section.4}% 
-\contentsline {subsection}{\numberline {4.1}Process vs Threads}{18}{subsection.4.1}% 
-\contentsline {subsection}{\numberline {4.2}Concurrency}{19}{subsection.4.2}% 
-\contentsline {subsection}{\numberline {4.3}Design space of process/threads}{21}{subsection.4.3}% 
-\contentsline {subsection}{\numberline {4.4}Kernel threads}{21}{subsection.4.4}% 
-\contentsline {subsection}{\numberline {4.5}User-level threads}{22}{subsection.4.5}% 
-\contentsline {subsection}{\numberline {4.6}Summary}{24}{subsection.4.6}% 
-\contentsline {section}{\numberline {5}Synchronisation}{25}{section.5}% 
-\contentsline {subsection}{\numberline {5.1}Locks}{27}{subsection.5.1}% 
-\contentsline {subsection}{\numberline {5.2}Spinlocks}{28}{subsection.5.2}% 
-\contentsline {section}{\numberline {6}Semaphores, Condition Variables, and Monitors}{29}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Semaphore}{29}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6.2}Monitors}{32}{subsection.6.2}% 
-\contentsline {section}{\numberline {7}Deadlock}{35}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Graph reduction}{35}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7.2}Banker's Algorithm}{37}{subsection.7.2}% 
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}% 
+\contentsline {section}{\numberline {2}Operating System Structure}{3}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Architectural impact}{3}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}User operating interaction}{3}{subsection.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.1}User v.s.\ kernel}{3}{subsubsection.2.2.1}% 
+\contentsline {subsubsection}{\numberline {2.2.2}Syscall}{4}{subsubsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Operating System structure}{5}{subsection.2.3}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Layers}{5}{subsubsection.2.3.1}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Examples}{7}{subsubsection.2.3.2}% 
+\contentsline {subsection}{\numberline {2.4}Summary}{10}{subsection.2.4}% 
+\contentsline {section}{\numberline {3}Processes}{11}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Process}{11}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Process control block}{12}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Process state \& context switch}{13}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}Process creation and termination}{15}{subsection.3.4}% 
+\contentsline {subsection}{\numberline {3.5}Summary}{18}{subsection.3.5}% 
+\contentsline {section}{\numberline {4}Threads}{19}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Process vs Threads}{19}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Concurrency}{20}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}Design space of process/threads}{22}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Kernel threads}{22}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}User-level threads}{23}{subsection.4.5}% 
+\contentsline {subsection}{\numberline {4.6}Summary}{25}{subsection.4.6}% 
+\contentsline {section}{\numberline {5}Synchronisation}{26}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}Locks}{28}{subsection.5.1}% 
+\contentsline {subsection}{\numberline {5.2}Spinlocks}{29}{subsection.5.2}% 
+\contentsline {section}{\numberline {6}Semaphores, Condition Variables, and Monitors}{30}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Semaphore}{30}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Monitors}{33}{subsection.6.2}% 
+\contentsline {section}{\numberline {7}Deadlock}{36}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Graph reduction}{36}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Banker's Algorithm}{38}{subsection.7.2}% 
+\contentsline {section}{\numberline {8}Scheduling}{41}{section.8}% 
+\contentsline {subsection}{\numberline {8.1}Scheduling Goals}{42}{subsection.8.1}% 
+\contentsline {subsection}{\numberline {8.2}Laws and properties}{42}{subsection.8.2}% 
+\contentsline {section}{\numberline {9}Algorithms}{43}{section.9}% 
+\contentsline {subsection}{\numberline {9.1}Summary}{45}{subsection.9.1}% 
+\contentsline {section}{\numberline {10}Memory Management}{45}{section.10}% 

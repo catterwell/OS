@@ -30,3 +30,8 @@
 \BOOKMARK [1][-]{section.7}{Deadlock}{}% 30
 \BOOKMARK [2][-]{subsection.7.1}{Graph reduction}{section.7}% 31
 \BOOKMARK [2][-]{subsection.7.2}{Banker's Algorithm}{section.7}% 32
+\BOOKMARK [1][-]{section.8}{Scheduling}{}% 33
+\BOOKMARK [2][-]{subsection.8.1}{Scheduling Goals}{section.8}% 34
+\BOOKMARK [2][-]{subsection.8.2}{Laws and properties}{section.8}% 35
+\BOOKMARK [1][-]{section.9}{Algorithms}{}% 36
+\BOOKMARK [2][-]{subsection.9.1}{Summary}{section.9}% 37

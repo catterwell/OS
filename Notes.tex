@@ -1373,18 +1373,19 @@ Each semaphore has an associated queue of threads
                         run some other thread.
                 \end{itemize}
         \end{itemize}
-\item \texttt{V\,(sem)}
-    \begin{itemize}
-        \item \emph{acquire ``real'' mutual exclusion}
-            \begin{itemize}
-                \item if threads are waiting on the associated queue,
-                    unblock one (place it on the ready queue)
-                \item if no threads are on the queue, \texttt{sem} is incremented \\
-                    the signal is ``remembered'' for the next time \texttt{P\,(sem)} is called
-            \end{itemize}
-        \item release ``real'' mutual exclusion
-        \item the ``\texttt{V}-ing'' thread continues execution.
-    \end{itemize}
+    \item \texttt{V\,(sem)}
+        \begin{itemize}
+            \item \emph{acquire ``real'' mutual exclusion}
+                \begin{itemize}
+                    \item if threads are waiting on the associated queue,
+                        unblock one (place it on the ready queue)
+                    \item if no threads are on the queue, \texttt{sem} is incremented \\
+                        the signal is ``remembered'' for the next time \texttt{P\,(sem)}
+                        is called
+                \end{itemize}
+            \item release ``real'' mutual exclusion
+            \item the ``\texttt{V}-ing'' thread continues execution.
+        \end{itemize}
 \end{itemize}
 
 \textbf{Problems with semaphores, locks}
@@ -1484,7 +1485,7 @@ Each semaphore has an associated queue of threads
                 \end{itemize}
             \item \texttt{broadcast\,(c)}
                 \begin{itemize}
-                        \item wake up all waiting threads.
+                    \item wake up all waiting threads.
                 \end{itemize}
         \end{itemize}
 \end{itemize}
@@ -1560,7 +1561,8 @@ Each semaphore has an associated queue of threads
     \item A thread is deadlocked when it's waiting for an event that can never occur
     \item Thread \texttt{A} is in critical section 1 \\
         waiting for access to critical section 2;
-    \item Thread \texttt{B} is in critical section 2 \\ waiting for access to critical section 1
+    \item Thread \texttt{B} is in critical section 2 \\ waiting for access to critical
+        section 1
 \end{itemize}
 
 \textbf{Four conditions must exist for deadlock to be possible}
@@ -1667,8 +1669,8 @@ Less severe restrictions on program behaviour.
                     \item can the graph be reduced?
                         \begin{itemize}
                             \item If so: allocate the requested resource.
-                            \item If not, block the thread until some thread releases resources,
-                                and then try pretending again.
+                            \item If not, block the thread until some thread releases
+                                resources, and then try pretending again.
                         \end{itemize}
                 \end{itemize}
         \end{itemize}
@@ -1701,7 +1703,7 @@ Let \texttt{n} = number of processes, and \texttt{m} = number of resource types.
 \begin{itemize}
     \item \texttt{Available}: Vector of length \texttt{m}.
         If \texttt{Available[j]} = \texttt{k}, there are \texttt{k} instances of resource type
-    $\texttt{R}_\texttt{j}$ available.
+        $\texttt{R}_\texttt{j}$ available.
     \item \texttt{Max} $\texttt{n} \times \texttt{m}$ matrix.
         If \texttt{Allocation[i,j]} = \texttt{k}, then $P_i$ is currently allocated
         \texttt{k} instances of $\texttt{R}_\texttt{j}$
@@ -1718,19 +1720,19 @@ Let \texttt{n} = number of processes, and \texttt{m} = number of resource types.
     \item Let \texttt{Work} and \texttt{Finish} be vectors of length \texttt{m} and \texttt{n},
         respectively.
         Initialise: \\
-    \texttt{Work = Available} \\
-    \texttt{Finish[i] = false for i = 0..n-1}
-\item Find an \texttt{i} such that both:
-    \begin{enumerate}
-        \item \texttt{Finish[i] == false}
-        \item $\texttt{Need}_\texttt{i} \texttt{ <= Work}$
-    \end{enumerate}
-    If no such \texttt{i} exists, go to step 4
-\item \texttt{Work = Work + Allocation} \\
-    \texttt{Finish[i] = true} \\
-    go to step 2
-\item If \texttt{Finish[i] == true, for all i,}
-    then the system is in a safe state.
+        \texttt{Work = Available} \\
+        \texttt{Finish[i] = false for i = 0..n-1}
+    \item Find an \texttt{i} such that both:
+        \begin{enumerate}
+            \item \texttt{Finish[i] == false}
+            \item $\texttt{Need}_\texttt{i} \texttt{ <= Work}$
+        \end{enumerate}
+        If no such \texttt{i} exists, go to step 4
+    \item \texttt{Work = Work + Allocation} \\
+        \texttt{Finish[i] = true} \\
+        go to step 2
+    \item If \texttt{Finish[i] == true, for all i,}
+        then the system is in a safe state.
 \end{enumerate}
 
 \textbf{Resource-Request Algorithm for Process $\texttt{P}_\texttt{i}$} \\
@@ -1827,6 +1829,319 @@ $\texttt{R}_\texttt{j}$.
         or dynamically (avoidance and/or detection)
     \item In practice, you'll encounter lock ordering, periodic deadlock detection/correction,
         and minefields.
+\end{itemize}
+
+\section{Scheduling}
+
+\textbf{Scheduling}
+\begin{itemize}
+    \item We have talked about \emph{context switching}
+        \begin{itemize}
+            \item an interrupt occurs (device completion, timer interrupt)
+            \item a thread causes a trap or execution
+            \item may need to choose a different thread/process to run
+        \end{itemize}
+    \item Glossed over which process or thread to run next
+        \begin{itemize}
+            \item ``some thread from the ready queue''
+        \end{itemize}
+    \item This decision is called \emph{scheduling}
+        \begin{itemize}
+            \item scheduling is a \emph{policy}
+            \item context switching is a \emph{mechanism}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Classes of Schedulers}
+\begin{itemize}
+    \item Batch
+        \begin{itemize}
+            \item Throughput / utilisation oriented
+            \item Example: audit inter-bank funds transfers each night, Pixar rendering,
+                Hadoop/MapReduce jobs.
+        \end{itemize}
+    \item Interactive
+        \begin{itemize}
+            \item Response time oriented
+        \end{itemize}
+    \item Real time
+        \begin{itemize}
+            \item Deadline driven
+            \item Example: embedded systems (cars, aeroplanes, etc.)
+        \end{itemize}
+    \item Parallel
+        \begin{itemize}
+            \item Speedup-driven
+            \item Example: ``space-shared'' use of a 1000-processor machine for large
+                simulations.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Multiple levels of scheduling decisions}
+\begin{itemize}
+    \item Long term
+        \begin{itemize}
+            \item Should a ``job'' be ``initiated'', or should it be held?
+            \item Typical of batch systems.
+        \end{itemize}
+    \item Medium term
+        \begin{itemize}
+            \item Should a running program be temporarily marked as non-runnable
+                (e.g.\ swapped out)?
+        \end{itemize}
+    \item Short term
+        \begin{itemize}
+            \item Which thread should be given to the CPU next?
+                For how long?
+            \item Which I/O operation should be sent to the disk next?
+            \item On a multiprocessor:
+                \begin{itemize}
+                    \item Should we attempt to coordinate the running of threads from the same
+                        address space in some way?
+                    \item Should we worry about cache state (processor affinity)?
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Scheduling Goals}
+
+\textbf{Scheduling Goals I:\@ Performance} \\
+Many possible metrics / performance goals (which sometimes conflict)
+\begin{itemize}
+    \item maximise \emph{CPU utilisation}
+    \item maximise \emph{throughput} (requests completed per second)
+    \item minimise \emph{average response time} (average time from submission of request to
+        completion of response)
+    \item minimise \emph{average waiting time} (average time from submission of request to
+        start of execution)
+    \item minimise \emph{energy} (joules per instruction) subject to some constraint
+        (e.g.\ frames per second)
+\end{itemize}
+
+\textbf{Scheduling Goals II:\@ Fairness}
+\begin{itemize}
+    \item No single, compelling definition of ``fair''
+        \begin{itemize}
+            \item How to measure fairness?
+            \item Fair per-user? Per-process? Per-thread?
+            \item What if one process is CPU bound, and one is I/O bound?
+        \end{itemize}
+    \item Sometimes the goal is to be unfair:
+        \begin{itemize}
+            \item Explicitly favour some particular class of requests (priority system),
+                but\dots
+            \item avoid starvation (be sure everyone gets at least some service).
+        \end{itemize}
+\end{itemize}
+
+\textbf{When to assign?} \\
+Pre-emptive v.s.\ non-pre-emptive schedulers
+\begin{itemize}
+    \item Non pre-emptive \\
+        once you give somebody the green light, they've got it until they relinquish it
+        \begin{itemize}
+            \item an I/O operation
+            \item allocation of memory in a system without swapping
+        \end{itemize}
+    \item Pre-emptive
+        \begin{itemize}
+            \item you can re-visit a decision
+                \begin{itemize}
+                    \item setting the timer allows you to pre-empt the CPU from a thread even
+                        if it
+                        doesn't relinquish it voluntarily.
+                \end{itemize}
+            \item Re-assignment always involves some overhead
+                \begin{itemize}
+                    \item Overhead doesn't contribute to the goal of any scheduler.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+We'll assume ``work conserving'' policies
+\begin{itemize}
+    \item Never leave a resource idle when someone wants it
+\end{itemize}
+
+\subsection{Laws and properties}
+
+\emph{The Utilisation Law}: $U = X \times S$
+\begin{itemize}
+    \item $U$ utilisation
+    \item $X$ throughput (requests per second)
+    \item $S$ average service time
+    \item Utilisation is constant, independent of the schedule, so long as the workload
+        can be processed
+\end{itemize}
+
+\emph{Little's Law}: $N = X \times R$
+\begin{itemize}
+    \item $N$ average number in system
+    \item $X$ throughput
+    \item $R$ average response time
+    \item a better average response time implies fewer in system, and vice versa.
+\end{itemize}
+
+Response Time $R$ at a single server under FCFS scheduling:
+\begin{itemize}
+    \item $R = \frac{S}{1-U}$
+    \item $N = \frac{U}{1-U}$
+\end{itemize}
+
+\section{Algorithms}
+
+\textbf{Algorithm 1:\@ First-come first-served (FCFS)} \\
+\begin{itemize}
+    \item schedule in the order that they arrive
+    \item ``real-world'' scheduling of people in (single) lines
+    \item jobs treated equally, no starvation
+    \item Drawbacks:
+        \begin{itemize}
+            \item Average response time can be poor: \emph{convoy effect}
+            \item May lead to poor utilisation of other resources
+                \begin{itemize}
+                    \item if you send me on my way, I can go keep another resource busy
+                    \item FCFS may result in poor overlap of CPU and I/O activity
+                \end{itemize}
+            \item The more copies of the resource there are to be scheduled
+                \begin{itemize}
+                    \item the less dramatic the impact of occasional very large jobs
+                        (so long as there is a single waiting line)
+                    \item e.g.\ multiple cores v.s.\@ single core
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Algorithm 2:\@ Shortest-job-first (SJF)}
+\begin{itemize}
+    \item Associate with each process the length of its next CPU burst
+        \begin{itemize}
+            \item use these lengths to schedule the process with the shortest time
+        \end{itemize}
+    \item SJF is optimal --- gives minimum average waiting time for a given set of processes
+        \begin{itemize}
+            \item the difficulty is knowing the length of the next CPU request
+            \item could ask the user.
+        \end{itemize}
+    \item Determining the length of next CPU burst
+        \begin{itemize}
+            \item Can only estimate the length --- should be similar to the previous one
+                \begin{itemize}
+                    \item then pick process with shortest predicted next CPU burst.
+                \end{itemize}
+            \item Can be done by  using the length of previous CPU bursts, using exponential
+                averaging
+                \begin{enumerate}
+                    \item $t_n$ actual length of $n$th CPU burst
+                    \item $\tau_{n+1}$ predicted value for the next CPU burst
+                    \item $\alpha, 0 \leq \alpha \leq 1$
+                    \item Define: $\tau_{n+1} = \alpha t_n + (1-\alpha)\tau_n$
+                \end{enumerate}
+            \item Commonly, set $\alpha = 0.5$
+            \item Pre-emptive version called \emph{shortest-remaining-time-first}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Algorithm 3:\@ Round Robin (RR)}
+\begin{itemize}
+    \item Each process gets a small unit of CPU time (\emph{time quantum} $q$),
+        usually 10--100 milliseconds.
+        \begin{itemize}
+            \item After this time has elapsed, the process is pre-empted and added to the
+                end of the ready queue.
+        \end{itemize}
+    \item If there are $n$ processes in the ready queue and the time quantum is $q$,
+        \begin{itemize}
+            \item then each process gets $\frac{1}{n}$ of the CPU time in chunks of at most
+                $q$ time units at once.
+            \item No process waits more than $(n-1)q$ time units.
+        \end{itemize}
+    \item Timer interrupts every quantum to schedule next process
+    \item Performance
+        \begin{itemize}
+            \item $q$ large $\implies$ FIFO
+            \item $q$ small $\implies q$ must be large with respect to context switch,
+                otherwise overhead is too high.
+        \end{itemize}
+    \item Drawbacks:
+        \begin{itemize}
+            \item What if all jobs are exactly the same length?
+            \item What do you set the quantum to be?
+                \begin{itemize}
+                    \item no value is ``correct''
+                    \item if small, then context switch often, incurring high overhead
+                    \item if large, then the response time degrades.
+                \end{itemize}
+            \item Treats all jobs equally
+        \end{itemize}
+\end{itemize}
+
+\textbf{Algorithm 4:\@ Priority Scheduling}
+\begin{itemize}
+    \item A priority number (integer) is associated with each process
+    \item The CPU is allocated to the process with the highest priority
+    \item SJF is priority scheduling where priority is the inverse of predicted next CPU
+        burst time.
+    \item Problem: \emph{starvation} --- low priority processes may never execute.
+    \item Solution: \emph{ageing} --- as time progresses, increase the priority of the process.
+\end{itemize}
+
+\textbf{Multi-level Feedback Queues (MLFQ)}
+\begin{itemize}
+    \item It's been observed that workloads tend to have increasing residual life ---
+        ``if you don't finish quickly, you're probably a lifer''
+    \item This is exploited in practice by using a policy that discriminates against the old.
+    \item MLFQ:\@
+        \begin{itemize}
+            \item there is a hierarchy of queues
+            \item there is a priority ordering among the queues
+            \item new requests enter the highest priority queue
+            \item each queue is scheduling RR
+            \item requests move between queues based on execution history.
+        \end{itemize}
+\end{itemize}
+
+\textbf{UNIX scheduling}
+\begin{itemize}
+    \item Canonical scheduler is pretty much MLFQ
+        \begin{itemize}
+            \item 3--4 classes spanning $\sim170$ priority levels
+                \begin{itemize}
+                    \item time-sharing: lowest 60 priorities
+                    \item system: middle 40 priorities
+                    \item real-time: highest 60 priorities
+                \end{itemize}
+            \item priority scheduling across queues, RR within
+                \begin{itemize}
+                    \item process with highest priority always run first
+                    \item processes with same priority scheduled RR
+                \end{itemize}
+            \item processes dynamically change priority
+                \begin{itemize}
+                    \item increases over time if process blocks before end of quantum
+                    \item decreases if process uses entire quantum
+                \end{itemize}
+        \end{itemize}
+    \item Goals:
+        \begin{itemize}
+            \item reward interactive behaviour over CPU hogs
+                \begin{itemize}
+                    \item interactive jobs typically have short bursts of CPU
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Summary}
+\begin{itemize}
+    \item Scheduling takes place at many levels
+    \item It can make a huge difference in performance
+        \begin{itemize}
+            \item this difference increases with the variability in service requirements
+        \end{itemize}
+    \item Multiple goals, sometimes conflicting
+    \item There are many ``pure'' algorithms, most with some drawbacks in practice ---
+        FCFS, SJF, RR, Priority
+    \item Real system use hybrids that exploit observed program behaviour
+    \item Scheduling is important
 \end{itemize}
 
 \end{document}

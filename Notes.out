@@ -42,3 +42,16 @@
 \BOOKMARK [2][-]{subsection.9.4}{Contiguous Memory Allocation}{section.9}% 42
 \BOOKMARK [2][-]{subsection.9.5}{Segmentation}{section.9}% 43
 \BOOKMARK [2][-]{subsection.9.6}{Summary}{section.9}% 44
+\BOOKMARK [1][-]{section.10}{Paging}{}% 45
+\BOOKMARK [2][-]{subsection.10.1}{Paging}{section.10}% 46
+\BOOKMARK [2][-]{subsection.10.2}{Page Tables}{section.10}% 47
+\BOOKMARK [2][-]{subsection.10.3}{TLB}{section.10}% 48
+\BOOKMARK [2][-]{subsection.10.4}{Shared Pages}{section.10}% 49
+\BOOKMARK [2][-]{subsection.10.5}{Hierarchical Pages}{section.10}% 50
+\BOOKMARK [2][-]{subsection.10.6}{Hashed Pages}{section.10}% 51
+\BOOKMARK [2][-]{subsection.10.7}{Inverted Pages}{section.10}% 52
+\BOOKMARK [2][-]{subsection.10.8}{Uses}{section.10}% 53
+\BOOKMARK [1][-]{section.11}{Virtual Memory}{}% 54
+\BOOKMARK [1][-]{section.12}{File Systems}{}% 55
+\BOOKMARK [1][-]{section.13}{Secondary Storage}{}% 56
+\BOOKMARK [1][-]{section.14}{Virtualisation}{}% 57

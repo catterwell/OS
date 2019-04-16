@@ -256,6 +256,15 @@ INPUT ./pics/two-level-page-table-scheme.jpg
 INPUT pics/hashed-page-table.jpg
 INPUT ./pics/hashed-page-table.jpg
 INPUT ./pics/hashed-page-table.jpg
+INPUT pics/page-table-when-some-pages-are-not-in-main-memory.jpg
+INPUT ./pics/page-table-when-some-pages-are-not-in-main-memory.jpg
+INPUT ./pics/page-table-when-some-pages-are-not-in-main-memory.jpg
+INPUT pics/steps-in-handling-a-page-fault.jpg
+INPUT ./pics/steps-in-handling-a-page-fault.jpg
+INPUT ./pics/steps-in-handling-a-page-fault.jpg
+INPUT pics/page-replacement.jpg
+INPUT ./pics/page-replacement.jpg
+INPUT ./pics/page-replacement.jpg
 INPUT Notes.aux
 INPUT ./Notes.out
 INPUT ./Notes.out

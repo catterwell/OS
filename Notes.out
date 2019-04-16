@@ -52,6 +52,13 @@
 \BOOKMARK [2][-]{subsection.10.7}{Inverted Pages}{section.10}% 52
 \BOOKMARK [2][-]{subsection.10.8}{Uses}{section.10}% 53
 \BOOKMARK [1][-]{section.11}{Virtual Memory}{}% 54
-\BOOKMARK [1][-]{section.12}{File Systems}{}% 55
-\BOOKMARK [1][-]{section.13}{Secondary Storage}{}% 56
-\BOOKMARK [1][-]{section.14}{Virtualisation}{}% 57
+\BOOKMARK [2][-]{subsection.11.1}{Virtual memory}{section.11}% 55
+\BOOKMARK [2][-]{subsection.11.2}{Page Fault}{section.11}% 56
+\BOOKMARK [2][-]{subsection.11.3}{Demand Paging}{section.11}% 57
+\BOOKMARK [2][-]{subsection.11.4}{Page replacement}{section.11}% 58
+\BOOKMARK [2][-]{subsection.11.5}{Page replacement algorithms}{section.11}% 59
+\BOOKMARK [2][-]{subsection.11.6}{Working set}{section.11}% 60
+\BOOKMARK [2][-]{subsection.11.7}{Thrashing}{section.11}% 61
+\BOOKMARK [1][-]{section.12}{File Systems}{}% 62
+\BOOKMARK [1][-]{section.13}{Secondary Storage}{}% 63
+\BOOKMARK [1][-]{section.14}{Virtualisation}{}% 64

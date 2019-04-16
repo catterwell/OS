@@ -52,6 +52,13 @@
 \contentsline {subsection}{\numberline {10.7}Inverted Pages}{60}{subsection.10.7}% 
 \contentsline {subsection}{\numberline {10.8}Uses}{61}{subsection.10.8}% 
 \contentsline {section}{\numberline {11}Virtual Memory}{63}{section.11}% 
-\contentsline {section}{\numberline {12}File Systems}{63}{section.12}% 
-\contentsline {section}{\numberline {13}Secondary Storage}{63}{section.13}% 
-\contentsline {section}{\numberline {14}Virtualisation}{63}{section.14}% 
+\contentsline {subsection}{\numberline {11.1}Virtual memory}{63}{subsection.11.1}% 
+\contentsline {subsection}{\numberline {11.2}Page Fault}{63}{subsection.11.2}% 
+\contentsline {subsection}{\numberline {11.3}Demand Paging}{64}{subsection.11.3}% 
+\contentsline {subsection}{\numberline {11.4}Page replacement}{65}{subsection.11.4}% 
+\contentsline {subsection}{\numberline {11.5}Page replacement algorithms}{66}{subsection.11.5}% 
+\contentsline {subsection}{\numberline {11.6}Working set}{67}{subsection.11.6}% 
+\contentsline {subsection}{\numberline {11.7}Thrashing}{68}{subsection.11.7}% 
+\contentsline {section}{\numberline {12}File Systems}{69}{section.12}% 
+\contentsline {section}{\numberline {13}Secondary Storage}{69}{section.13}% 
+\contentsline {section}{\numberline {14}Virtualisation}{69}{section.14}% 

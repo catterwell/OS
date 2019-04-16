@@ -2912,6 +2912,332 @@ First-fit and best-fit better than worst-fit in terms of speed and storage utili
 
 \section{Virtual Memory}
 
+\subsection{Virtual memory}
+
+\textbf{Paged virtual memory}
+\begin{itemize}
+    \item Allows a larger logical address space than physical memory
+    \item All pages of address space do not need to be in memory
+        \begin{itemize}
+            \item the full (used) address space on disk in page-sized blocks
+            \item main memory used as a (page) cache
+        \end{itemize}
+    \item Needed page transferred to a free page frame
+        \begin{itemize}
+            \item if no free page frames, evict a page
+                \begin{itemize}
+                    \item evicted pages go to disk only if \emph{dirty}
+                \end{itemize}
+            \item Transparent to the application, except for performance
+            \item Managed by hardware and OS
+        \end{itemize}
+    \item Traditionally called \emph{paged virtual memory}
+\end{itemize}
+
+\subsection{Page Fault}
+
+\textbf{Page Fault}
+\begin{itemize}
+    \item If there is a reference to a page, first reference to that page will trap to OS:\ \\
+        \emph{page fault}
+\end{itemize}
+\begin{enumerate}
+    \item OS looks at another table to decide
+        \begin{itemize}
+            \item invalid reference $\implies$ abort
+            \item just not in memory
+        \end{itemize}
+    \item Find free frame
+    \item Swap page into frame via scheduled disk operation
+    \item Reset tables to indicate page now in memory \\
+        Set validation bit = \texttt{v}
+    \item Restart the instruction that caused the page fault
+\end{enumerate}
+
+\includegraphics[height=270]{page-table-when-some-pages-are-not-in-main-memory.jpg}
+
+\includegraphics[height=270]{steps-in-handling-a-page-fault.jpg}
+
+\subsection{Demand Paging}
+
+\textbf{Demand paging}
+\begin{itemize}
+    \item Pages only brought into memory when referenced
+        \begin{itemize}
+            \item Only code/data that is needed by a process needs to be loaded
+                \begin{itemize}
+                    \item What's needed changes over time
+                \end{itemize}
+            \item Hence, it's called \emph{demand paging}
+        \end{itemize}
+    \item Few systems try to anticipate future needs
+    \item But sometimes cluster pages
+        \begin{itemize}
+            \item OS keeps track of pages that should come and go together
+            \item bring in all when one is referenced
+            \item interface may allow programmer or compiler to identify clusters
+        \end{itemize}
+\end{itemize}
+
+\subsection{Page replacement}
+
+\textbf{Page replacement}
+\begin{itemize}
+    \item When you read in a page, where does it go?
+        \begin{itemize}
+            \item if there are free page frames, grab one
+            \item if not, must evict something else
+                \begin{itemize}
+                    \item this is called \emph{page replacement}
+                \end{itemize}
+        \end{itemize}
+    \item Page replacement algorithms
+        \begin{itemize}
+            \item try to pick a page that won't be needed in the near future
+            \item try to pick a page that hasn't been modified (thus saving the disk write)
+        \end{itemize}
+    \item OS tries to keep a pool of free pages around
+        \begin{itemize}
+            \item so that allocations don't inevitably case evictions
+        \end{itemize}
+    \item OS tries to keep some ``clean'' pages around
+        \begin{itemize}
+            \item so that even if you have to evict a page, you won't have to write it
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{page-replacement.jpg}
+
+\textbf{Evicting the best page}
+\begin{itemize}
+    \item The goal of the page replacement algorithm:
+        \begin{itemize}
+            \item reduce fault rate by selecting best victim page to remove
+            \item the best page to evict is one that will never be touched again
+            \item Belady's proof:
+                \begin{itemize}
+                    \item evicting the page that won't be used for the longest period of time
+                        minimises the page fault rate
+                \end{itemize}
+        \end{itemize}
+    \item Examine \emph{page replacement algorithms}
+        \begin{itemize}
+            \item assume that a process pages against itself
+            \item using a fixed number of page frames
+        \end{itemize}
+    \item Number of frames available impacts page fault rate
+        \begin{itemize}
+            \item Note Belady's anomaly
+        \end{itemize}
+\end{itemize}
+
+\subsection{Page replacement algorithms}
+
+\textbf{First-In-First-Out (FIFO) Algorithm}
+\begin{itemize}
+    \item Not always the best page replacement behaviour.
+\end{itemize}
+
+\textbf{Belady's Optimal Algorithm}
+\begin{itemize}
+    \item Replace page that will not be used for longest period of time
+    \item How do you know this?
+        \begin{itemize}
+            \item Can't predict the future
+        \end{itemize}
+    \item Used for measuring how well your algorithm performs
+\end{itemize}
+
+\textbf{Least Recently Used (LRU) algorithm}
+\begin{itemize}
+    \item Use past knowledge rather than future
+    \item Replace page that has not been used in the most amount of time
+    \item Associate time of last use with each page
+    \item 12 pages --- better than FIFO but works than Belady's/OPT
+    \item Generally good algorithm and frequently used
+    \item But how to implement?
+\end{itemize}
+
+\textbf{Approximating LRU}
+\begin{itemize}
+    \item Many approximations, all use the PTE's referenced but
+        \begin{itemize}
+            \item keep a counter for each page
+            \item at some regular interval, for each page, do:
+                \begin{itemize}
+                    \item if reference bit = 0, increment the counter (hasn't been used)
+                    \item if reference bit = 1, zero the counter (hasn't been used)
+                    \item regardless, zero bit ref
+                \end{itemize}
+            \item the counter will contain the number of intervals since the last reference to
+                the page
+                \begin{itemize}
+                    \item page with largest counter is least recently used
+                \end{itemize}
+        \end{itemize}
+    \item Some architectures don't have PTE reference bits
+        \begin{itemize}
+            \item can simulate reference bit using the valid bit to induce faults
+        \end{itemize}
+\end{itemize}
+
+\textbf{Second-chance clock}
+\begin{itemize}
+    \item Not Recently Used (NRU) or Second Change
+        \begin{itemize}
+            \item replace page that is ``old enough''
+            \item logically, arrange all physical page frames in a big circle (clock)
+                \begin{itemize}
+                    \item just a circular linked list
+                \end{itemize}
+        \end{itemize}
+    \item A ``clock hand'' is used to select a good LRU candidate
+        \begin{itemize}
+            \item sweep through the pages in circular order like a clock
+        \end{itemize}
+    \item If reference bit is off, it hasn't been used recently, and we have a victim
+    \item If reference bit is on, turn if off and go to next page
+        \begin{itemize}
+            \item arm moves quickly when pages are needed.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Allocation of frames among processes}
+\begin{itemize}
+    \item FIFO and LRU Clock each can be implemented as either \emph{local} or \emph{global}
+        replacement algorithms
+        \begin{itemize}
+            \item local
+                \begin{itemize}
+                    \item each process is given a limit of pages it can use
+                    \item it ``pages against itself'' (evicts its own pages)
+                \end{itemize}
+            \item global
+                \begin{itemize}
+                    \item the ``victim'' is chosen from among all page frames, regardless of
+                        owner
+                    \item processes' page frame allocation can vary dynamically
+                \end{itemize}
+        \end{itemize}
+    \item Issues with local replacement?
+        \begin{itemize}
+            \item poor utilisation of free page frames, long access time
+        \end{itemize}
+    \item Issues with global replacement
+        \begin{itemize}
+            \item Linux uses global replacement: global thrashing.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Working set}
+
+\textbf{The \emph{working set model of program behaviour}}
+\begin{itemize}
+    \item \emph{Working set} of a process is used to model the dynamic locality of its memory
+        usage
+        \begin{itemize}
+            \item works set = set of pages a process currently ``needs''
+            \item formally defined by Peter Denning in the 1960s.
+        \end{itemize}
+    \item Definition:
+        \begin{itemize}
+            \item WS\,$(t, w)$ = \{pages $P$ such that $P$ was referenced in the time interval
+                $(t, t-w)$\}
+                \begin{itemize}
+                    \item $t$ time
+                    \item $w$ working set \emph{window} (measured in page references)
+                    \item a page in WS only if it was referenced in the last $w$ references
+                \end{itemize}
+        \end{itemize}
+    \item Working set varies over the life of the program
+        \begin{itemize}
+            \item so does the \emph{working set size}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Working set size}
+\begin{itemize}
+    \item The working set size, $|\mathrm{WS}(t, w)|$
+        \begin{itemize}
+            \item changes with program locality
+        \end{itemize}
+    \item During periods of poor locality
+        \begin{itemize}
+            \item more pages are referenced
+        \end{itemize}
+    \item Within that period of time
+        \begin{itemize}
+            \item the working set size is larger
+        \end{itemize}
+    \item Intuitively, the working set must be in memory
+        \begin{itemize}
+            \item otherwise you'll experience heavy faulting
+            \item \emph{thrashing}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Hypothetical Working Set Algorithm}
+\begin{itemize}
+    \item Estimate $|\mathrm{WS}(0, w)|$ for a process
+        \begin{itemize}
+            \item Allow that process to start only if you can allocate it that many page frames
+        \end{itemize}
+    \item Use a local replacement algorithm (LRU Clock?)
+        \begin{itemize}
+            \item make sure that the working set are occupying the process's frames
+        \end{itemize}
+    \item Track each process's working set size,
+        \begin{itemize}
+            \item and re-allocate page frames among processes dynamically
+        \end{itemize}
+    \item Problem
+        \begin{itemize}
+            \item keep track of working set size
+        \end{itemize}
+    \item Use reference bit with a fixed-interval timer interrupt.
+\end{itemize}
+
+\textbf{Working Sets and Page Fault Rates}
+\begin{itemize}
+    \item Direct relationship between working set of a process and its page-fault rate
+    \item Working set changes over time
+    \item Peaks and valleys over time
+\end{itemize}
+
+\textbf{Page-Fault frequency}
+\begin{itemize}
+    \item More direct approach than WSS
+    \item Establish ``acceptable'' \emph{page-fault frequency (PFF)} rate and use local
+        replacement policy
+        \begin{itemize}
+            \item If actual rate too low, process loses frame
+            \item If actual rate too high, process gains frame
+        \end{itemize}
+\end{itemize}
+
+\subsection{Thrashing}
+
+\textbf{Thrashing}
+\begin{itemize}
+    \item Thrashing
+        \begin{itemize}
+            \item when the system spends most of its time servicing page faults, little time
+                doing useful work
+        \end{itemize}
+    \item Could be that there is enough memory
+        \begin{itemize}
+            \item but a poor replacement algorithm --- incompatible with program behaviour
+        \end{itemize}
+    \item Could be that memory is over-committed
+        \begin{itemize}
+            \item OS sees CPU poorly utilised and adds more processes
+                \begin{itemize}
+                    \item too many active processes
+                \end{itemize}
+            \item Makes problem works
+        \end{itemize}
+\end{itemize}
+
 \section{File Systems}
 
 \section{Secondary Storage}

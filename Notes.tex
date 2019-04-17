@@ -3956,4 +3956,411 @@ Three main properties for a virtual machine
 \break{}
 
 \section{Secondary Storage}
+
+\textbf{Secondary storage}
+\begin{itemize}
+    \item Secondary storage:
+        \begin{itemize}
+            \item anything outside ``primary memory''
+            \item direct execution of instructions/data retrieval via machine load/store
+                \begin{itemize}
+                    \item not permitted
+                \end{itemize}
+        \end{itemize}
+    \item Characteristics:
+        \begin{itemize}
+            \item it's large: 250--2000GB and more
+            \item it's cheap: \$0.05/GB for hard drives
+        \end{itemize}
+    \item Persistent: data survives power loss
+        \begin{itemize}
+            \item it's slow: milliseconds to access
+        \end{itemize}
+    \item It \emph{does} fail, if rarely
+    \item Big failures:
+        \begin{itemize}
+            \item drive dies: Mean Time Between Failure $\sim$3 years
+            \item 100K drives and MTBF is 3 years
+                \begin{itemize}
+                    \item that's 1 ``big failure'' every 15 minutes!
+                \end{itemize}
+        \end{itemize}
+    \item Little failures (read/write errors, one byte in $10^{13}$)
+\end{itemize}
+
+\subsection{Disk trends}
+
+\textbf{Disk trends}
+\begin{itemize}
+    \item Disk capacity, 1975--1989
+        \begin{itemize}
+            \item doubled every 3+ years
+            \item 25\% improvement each year
+            \item factor of 10 every decade
+            \item \emph{Still exponential, but far less rapid than processor performance}
+        \end{itemize}
+    \item Disk capacity, 1990--recently
+        \begin{itemize}
+            \item doubling every 12 months
+            \item 100\% improvement each year
+            \item factor of 1000 every decade
+            \item \emph{Capacity growth 10$\times$ as fast a processor performance}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Disk cost}
+\begin{itemize}
+    \item Only a few years ago, disks purchased by the megabyte
+    \item Today, 1GB costs \$0.05 from Dell
+        \begin{itemize}
+            \item (except you have to buy in increments of 1000GB)
+            \item $\implies$ 1TB costs \$50, 1PB costs \$50K
+        \end{itemize}
+    \item Performance analogy
+        \begin{itemize}
+            \item Flying an aircraft at 600mph 6 inches above the ground
+            \item Reading/write a strip of postage stamps
+        \end{itemize}
+\end{itemize}
+
+\subsection{Memory hierarchy}
+
+\includegraphics[height=270]{memory-hierarchy.jpg}
+
+\textbf{Disks and the OS}
+\begin{itemize}
+    \item Disks are difficult devices
+        \begin{itemize}
+            \item errors, bad blocks, missed seeks, etc.
+        \end{itemize}
+    \item OS abstracts this for higher-level software
+        \begin{itemize}
+            \item lower-level device drivers (initiate a disk read, etc.)
+            \item higher-level abstractions (file, databases, etc.)
+            \item disk hardware increasingly helps with this
+        \end{itemize}
+    \item OS provide different levels of disk access to different clients
+        \begin{itemize}
+            \item physical disk block (surface, cylinder, sector)
+            \item disk logical block (disk block number)
+            \item file logical (filename, block or record or byte number)
+        \end{itemize}
+\end{itemize}
+
+\textbf{Physical disk structure}
+\begin{itemize}
+    \item Disk components
+        \begin{itemize}
+            \item platters
+            \item surfaces
+            \item tracks
+            \item sectors
+            \item cylinders
+            \item arm
+            \item heads
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{physical-disk-structure.jpg}
+
+\textbf{Disk structure}
+\begin{itemize}
+    \item Disk drives are addressed as
+        \begin{itemize}
+            \item large 1-dimensional arrays of \emph{logical blocks}
+            \item the logical block is the smallest unit of transfer
+            \item low-level formatting creates \emph{logical blocks} on physical media
+        \end{itemize}
+    \item The 1-dimensional array of logical blocks
+        \begin{itemize}
+            \item is mapped onto the sectors of the disk sequentially
+        \end{itemize}
+    \item Sector 0 is the first sector of the first track on the outermost cylinder
+        \begin{itemize}
+            \item mapping proceeds in order through that track
+            \item then the rest of the tracks in that cylinder
+            \item then through the rest of the cylinders from outermost to innermost
+        \end{itemize}
+    \item Logical to physical address should be easy
+        \begin{itemize}
+            \item except for bad sectors
+            \item non-constant number of sectors per track via constant angular velocity
+        \end{itemize}
+\end{itemize}
+
+\subsection{Performance}
+
+\textbf{Disk performance}
+\begin{itemize}
+    \item Performance depends on a number of steps
+    \item \emph{Seek}: moving the disk arm to the correct cylinder
+        \begin{itemize}
+            \item depends on how fast disk arm can move
+                \begin{itemize}
+                    \item not diminishing quickly due to physics
+                \end{itemize}
+        \end{itemize}
+    \item \emph{Rotation (latency)}: waiting for the sector to rotate under head
+        \begin{itemize}
+            \item depends on rotation rate of disk
+                \begin{itemize}
+                    \item rates are slowly increasing
+                \end{itemize}
+        \end{itemize}
+    \item \emph{Transfer}: transferring data from surface to disk controller
+        \begin{itemize}
+            \item  then sending it back to host
+            \item depends on density of bytes on disk
+                \begin{itemize}
+                    \item increasing, relatively quickly
+                \end{itemize}
+        \end{itemize}
+    \item When the OS uses the disk, it tries to minimise the cost of all these steps
+        \begin{itemize}
+            \item particularly seeks and rotation
+        \end{itemize}
+\end{itemize}
+
+\textbf{Performance}
+\begin{itemize}
+    \item OS may increase file block size
+        \begin{itemize}
+            \item in order to reduce seeking
+        \end{itemize}
+    \item OS may seek to co-locate ``related'' items
+        \begin{itemize}
+            \item in order to reduce seeking
+                \begin{itemize}
+                    \item blocks of the same file
+                    \item data and metadata for a file
+                \end{itemize}
+        \end{itemize}
+    \item Keep data or metadata in memory to reduce physical disk access
+        \begin{itemize}
+            \item Waste valuable physical memory:
+        \end{itemize}
+    \item If file access is sequential
+        \begin{itemize}
+            \item fetch blocks into memory before requested
+        \end{itemize}
+\end{itemize}
+
+\subsection{Scheduling}
+
+\textbf{Performance via disk scheduling}
+\begin{itemize}
+    \item Seeks are very expensive, so the OS attempts to schedule disk requests that are
+        queued waiting for the disk
+        \begin{itemize}
+            \item FCFS (do nothing)
+                \begin{itemize}
+                    \item reasonable when load is low
+                    \item long waiting time for long request queues
+                \end{itemize}
+            \item SSST (shortest seek time first)
+                \begin{itemize}
+                    \item minimise arm movement (seek time), maximise request rate
+                    \item unfairly favours middle blocks
+                \end{itemize}
+            \item SCAN (elevator algorithm)
+                \begin{itemize}
+                    \item service requests in one direction until done, then reverse
+                    \item skews wait times non-uniformly
+                \end{itemize}
+            \item C-SCAN
+                \begin{itemize}
+                    \item like scan, but only go in one direction (typewriter)
+                    \item uniform wait times
+                \end{itemize}
+            \item C-LOOK
+                \begin{itemize}
+                    \item similar to C-SCAN
+                    \item The arm goes only as far as the final request in each direction
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Selecting a Disk-Scheduling Algorithm}
+\begin{itemize}
+    \item SSTF is common and has a natural appeal
+    \item SCAN and C-SCAN perform better for systems that place a heavy load on the disk
+        \begin{itemize}
+            \item  Less starvation
+        \end{itemize}
+    \item Performance depends on the number and types of requests
+    \item Requests for disk service can be influenced by the file-allocation method
+        \begin{itemize}
+            \item And metadata layout
+        \end{itemize}
+    \item The disk-scheduling algorithm should be
+        \begin{itemize}
+            \item written as a separate module of the OS
+            \item allowing it to be replaced with a different algorithm if neessary
+        \end{itemize}
+    \item Either SSTF or C-LOOK is a reasonable choice for the default algorithm
+    \item What about rotational latency?
+        \begin{itemize}
+            \item Difficult for OS to calculate
+        \end{itemize}
+\end{itemize}
+
+\textbf{Interacting with disks}
+\begin{itemize}
+    \item Previously
+        \begin{itemize}
+            \item OS would specify cylinder number, sector number, surface number, transfer size
+                \begin{itemize}
+                    \item i.e.\ OS needs to know all the disk parameters
+                \end{itemize}
+        \end{itemize}
+    \item Modern disks more complex
+        \begin{itemize}
+            \item not all sectors are the same size, sectors are remapped, \dots
+        \end{itemize}
+    \item Disk provides a higher-level interface e.g.\ SCSI
+        \begin{itemize}
+            \item exports data as a logical array of blocks [0 \dots N]
+            \item maps \emph{logical blocks} to cylinder/surface/sector
+        \end{itemize}
+    \item OS only names logical block number
+        \begin{itemize}
+            \item  disk maps this to cylinder/surface/sector
+            \item on-board cache
+            \item as a result, physical parameters are hidden from OS
+        \end{itemize}
+\end{itemize}
+
+\subsection{SSDs}
+
+\textbf{Solid state drives: ongoing disruption}
+\begin{itemize}
+    \item Hard drives are based on spinning magnetic platters
+        \begin{itemize}
+            \item \emph{mechanics} of drives determine performance characteristics
+                \begin{itemize}
+                    \item sector addressable, not byte addressable
+                    \item capacity improving exponentially
+                    \item sequential bandwidth improving reasonably
+                    \item random access latency improving very slowly
+                \end{itemize}
+        \end{itemize}
+    \item Cost dictated by
+        \begin{itemize}
+            \item  massive economies of scale
+            \item and many decades of of commercial development and optimsation
+        \end{itemize}
+\end{itemize}
+
+\textbf{SSD}
+\begin{itemize}
+    \item Sold state drives are based on NAND flash memory
+        \begin{itemize}
+            \item no moving parts; performance characteristics driven by electronics and
+                physics --- more like RAM than spinning disk
+            \item relative technological newcomer, so costs are still quite high in comparison
+                to hard drives, but dropping fast
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Read}
+
+\textbf{SSD performance: reads}
+\begin{itemize}
+    \item Reads
+        \begin{itemize}
+            \item unit of read is a \emph{page}, typically 4KB large
+        \end{itemize}
+    \item Today's SSDs can typically handle
+        \begin{itemize}
+            \item 10,000--100,000 reads/s
+        \end{itemize}
+    \item 0.01--0.1 ms read latency
+        \begin{itemize}
+            \item 50--1000$\times$ better than disk seeks
+        \end{itemize}
+    \item 40--400 MB/s read throughput \begin{itemize}
+            \item 1--3$\times$ better than disk sequential throughput
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Write}
+
+\textbf{SSD performance: writes}
+\begin{itemize}
+    \item Writes
+        \begin{itemize}
+            \item flash media must be \emph{erased} before it can be written to
+            \item unit of erase is a block, typically 64--256 pages long
+                \begin{itemize}
+                    \item usually takes 1--2ms to erase a block
+                    \item blocks can only be erased a certain number of times before they become
+                        unusable --- typically 10,000--1,000,000 times
+                \end{itemize}
+            \item unit of write is a page
+                \begin{itemize}
+                    \item writing a page can be 2--10$\times$ slower than reading a page
+                \end{itemize}
+        \end{itemize}
+    \item Writing to an SSD is complicated
+        \begin{itemize}
+            \item random write to existing block: read block, erase block, write back modified
+                block
+                \begin{itemize}
+                    \item leads to hard-drive like performance (300 random writes / s)
+                \end{itemize}
+            \item sequential writes to erased blocks: fast!
+                \begin{itemize}
+                    \item SSD-read like performance (100--200 MB/S)
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{SSDs: dealing with erases, writes}
+\begin{itemize}
+    \item Lots of higher-level strategies can help hide the warts of an SSD
+    \item Many of these work by
+        \begin{itemize}
+            \item exposing logical pages, not physical pages
+        \end{itemize}
+    \item Wear-levelling
+        \begin{itemize}
+            \item when writing
+            \item try to spread erases out evenly across physical blocks of the SSD
+                \begin{itemize}
+                    \item Intel promises 100GB/day $\times$ 5 years for its SSD drives
+                \end{itemize}
+        \end{itemize}
+    \item Log-structured filesystems
+        \begin{itemize}
+            \item convert random writes within a filesystem
+            \item to log appends on the SSD
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Cost}
+
+\textbf{SSD cost}
+\begin{itemize}
+    \item Capacity
+        \begin{itemize}
+            \item today, flash SSD costs $\sim$\$2.50/GB
+                \begin{itemize}
+                    \item 1TB ssd costs around \$2,500
+                    \item 1TB hdd costs around \$50
+                \end{itemize}
+            \item Data on cost trends is volatile/preliminary
+        \end{itemize}
+    \item Energy
+        \begin{itemize}
+            \item  SSD is typically more energy efficient than a HDD
+                \begin{itemize}
+                    \item 1--2 watts to power an SSD
+                    \item $\sim$10 watts to power a higher performance HDD
+                        \begin{itemize}
+                            \item (can also buy a 1 watt lower-performance drive)
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
 \end{document}

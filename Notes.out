@@ -67,3 +67,11 @@
 \BOOKMARK [2][-]{subsection.12.5}{Unix}{section.12}% 67
 \BOOKMARK [1][-]{section.13}{Virtualisation}{}% 68
 \BOOKMARK [1][-]{section.14}{Secondary Storage}{}% 69
+\BOOKMARK [2][-]{subsection.14.1}{Disk trends}{section.14}% 70
+\BOOKMARK [2][-]{subsection.14.2}{Memory hierarchy}{section.14}% 71
+\BOOKMARK [2][-]{subsection.14.3}{Performance}{section.14}% 72
+\BOOKMARK [2][-]{subsection.14.4}{Scheduling}{section.14}% 73
+\BOOKMARK [2][-]{subsection.14.5}{SSDs}{section.14}% 74
+\BOOKMARK [3][-]{subsubsection.14.5.1}{Read}{subsection.14.5}% 75
+\BOOKMARK [3][-]{subsubsection.14.5.2}{Write}{subsection.14.5}% 76
+\BOOKMARK [3][-]{subsubsection.14.5.3}{Cost}{subsection.14.5}% 77

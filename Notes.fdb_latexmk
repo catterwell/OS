@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1555469600 "Notes.tex" "Notes.pdf" "Notes" 1555469600
+["pdflatex"] 1555529849 "Notes.tex" "Notes.pdf" "Notes" 1555529849
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1550406775 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1550406775 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1550406775 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -101,10 +101,10 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1550406775 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1554662146 3106252 d5255ed7fd6ec6ea7699581e9a54cb46 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1554662128 7919195 5c3354f3783a4f74665424f0e9f169ac ""
-  "Notes.aux" 1555468288 9040 2cdcd60fae6c6091c640dc741b699bc2 ""
-  "Notes.out" 1555468288 4315 c21430a027c49b8a74dd16d4503a54ea ""
-  "Notes.tex" 1555469598 155394 2eef3390317fa3b054287cc815b66675 ""
-  "Notes.toc" 1555468288 5618 0ff8e5897a22a587006cf3b3813239ec ""
+  "Notes.aux" 1555529838 10015 7681bbc8ec673f357181572a275f0443 ""
+  "Notes.out" 1555529838 4826 1cfb2cb343312106c25d8bb77857bc27 ""
+  "Notes.tex" 1555529848 170573 52aa13281c561e6d5f4e3866bd083bbc ""
+  "Notes.toc" 1555529838 6273 8a00216b34b1aeb4e0d3c7a8998bf161 ""
   "pics/a-kernel-crossing-illustrated.jpg" 1554669327 126965 436238540f51f94f1a64f3af1003c5c7 ""
   "pics/a-monitor.jpg" 1554780202 78226 16982e9aabf3d3e71c5b062cc59436da ""
   "pics/a-process-address-space.jpg" 1554673903 96405 88c2dd7da22cc8a6bb069607f89d70d8 ""
@@ -119,6 +119,7 @@
   "pics/hypervisor-types.jpg" 1555465294 98415 505e1fc7a16fd7b98558042372d79704 ""
   "pics/kernel-threads.jpg" 1554761840 75457 303453a3c8a92b456d1dd51bb0a15b5f ""
   "pics/locks.jpg" 1554768974 50641 0c1a523f2fdde1630e5350274e147dc5 ""
+  "pics/memory-hierarchy.jpg" 1555525015 91258 f1ff06389597956fb5af7b65e69c38e6 ""
   "pics/microkernel-structure-illustrated.jpg" 1554671647 120677 b20aabfac408c680e353ca8e37057f6d ""
   "pics/minix-3.jpg" 1554671811 143837 7b473efaea77fc62c490f5a8be291fed ""
   "pics/page-replacement.jpg" 1555435371 87856 035372984df877648eaa226dd6ab3561 ""
@@ -126,6 +127,7 @@
   "pics/paging-hardware-with-tlb.jpg" 1555375718 81334 7fe327fd1832afca531831c1157c1032 ""
   "pics/paging-hardware.jpg" 1555366407 67205 1f9bfd18810110a498794ec36dbbe7a1 ""
   "pics/pathname-resolution.jpg" 1555446133 146517 ae2ed6974f757f2c295c7952a647469e ""
+  "pics/physical-disk-structure.jpg" 1555525670 96106 0987621309532ac8849c36e7773b3ed5 ""
   "pics/process-address-space-threads.jpg" 1554750757 110939 6c5c2954aaf21cb86870651e36dbcca6 ""
   "pics/process-address-space.jpg" 1554750687 87727 ce60297279b13d07dfbcb7445462de00 ""
   "pics/process-context-switch.jpg" 1554681557 89047 26a7afc9122fed3faefcf204c3868bdb ""
@@ -148,8 +150,8 @@
   "pics/virtualising-x86-on-modern-hardware.jpg" 1555467307 118909 70be650ee5bc9bf3c4a036b2847bb0be ""
   "pics/windows.jpg" 1554671761 123347 983742d88b8571e7e5dcac13e66193ad ""
   (generated)
-  "Notes.aux"
-  "Notes.pdf"
   "Notes.log"
+  "Notes.pdf"
+  "Notes.aux"
   "Notes.toc"
   "Notes.out"

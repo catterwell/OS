@@ -289,6 +289,12 @@ INPUT ./pics/hypervisor-types.jpg
 INPUT pics/virtualising-x86-on-modern-hardware.jpg
 INPUT ./pics/virtualising-x86-on-modern-hardware.jpg
 INPUT ./pics/virtualising-x86-on-modern-hardware.jpg
+INPUT pics/memory-hierarchy.jpg
+INPUT ./pics/memory-hierarchy.jpg
+INPUT ./pics/memory-hierarchy.jpg
+INPUT pics/physical-disk-structure.jpg
+INPUT ./pics/physical-disk-structure.jpg
+INPUT ./pics/physical-disk-structure.jpg
 INPUT Notes.aux
 INPUT ./Notes.out
 INPUT ./Notes.out

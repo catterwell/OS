@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.4.7)  17 APR 2019 03:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.4.7)  17 APR 2019 20:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,7 +427,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
  [3]
-<pics/a-kernel-crossing-illustrated.jpg, id=374, 1284.8pt x 722.7pt>
+<pics/a-kernel-crossing-illustrated.jpg, id=414, 1284.8pt x 722.7pt>
 
 ./Notes.tex:143: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -458,7 +458,7 @@ File: pics/a-kernel-crossing-illustrated.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/a-kernel-crossing-illustrated.jpg  used on input line 143.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [4 <./pics/a-kernel-crossing-illustrated.jpg>] [5]
-<pics/system-layers.jpg, id=383, 1284.8pt x 722.7pt>
+<pics/system-layers.jpg, id=423, 1284.8pt x 722.7pt>
 
 ./Notes.tex:228: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -489,7 +489,7 @@ File: pics/system-layers.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/system-layers.jpg  used on input line 228.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [6 <./pics/system-layers.jpg>] [7]
-<pics/microkernel-structure-illustrated.jpg, id=393, 1284.8pt x 722.7pt>
+<pics/microkernel-structure-illustrated.jpg, id=433, 1284.8pt x 722.7pt>
 
 ./Notes.tex:345: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -519,7 +519,7 @@ File: pics/microkernel-structure-illustrated.jpg Graphic file (type jpg)
 <use pics/microkernel-structure-illustrated.jpg>
 Package pdftex.def Info: pics/microkernel-structure-illustrated.jpg  used on input line 345.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/windows.jpg, id=394, 1284.8pt x 722.7pt>
+<pics/windows.jpg, id=434, 1284.8pt x 722.7pt>
 ./Notes.tex:352: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -549,7 +549,7 @@ File: pics/windows.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/windows.jpg  used on input line 352.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [8 <./pics/microkernel-structure-illustrated.jpg>]
-<pics/minix-3.jpg, id=399, 1284.8pt x 722.7pt>
+<pics/minix-3.jpg, id=439, 1284.8pt x 722.7pt>
 
 ./Notes.tex:356: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -580,7 +580,7 @@ File: pics/minix-3.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/minix-3.jpg  used on input line 356.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [9 <./pics/windows.jpg> <./pics/minix-3.jpg>] [10]
-<pics/a-process-address-space.jpg, id=408, 1284.8pt x 722.7pt>
+<pics/a-process-address-space.jpg, id=448, 1284.8pt x 722.7pt>
 
 ./Notes.tex:434: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -611,7 +611,7 @@ File: pics/a-process-address-space.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/a-process-address-space.jpg  used on input line 434.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [11] [12 <./pics/a-process-address-space.jpg>]
-<pics/process-context-switch.jpg, id=417, 1284.8pt x 722.7pt>
+<pics/process-context-switch.jpg, id=457, 1284.8pt x 722.7pt>
 
 ./Notes.tex:518: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -642,7 +642,7 @@ File: pics/process-context-switch.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/process-context-switch.jpg  used on input line 518.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [13]
-<pics/process-states-and-state-transitions.jpg, id=424, 1284.8pt x 722.7pt>
+<pics/process-states-and-state-transitions.jpg, id=464, 1284.8pt x 722.7pt>
 
 ./Notes.tex:539: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -673,7 +673,7 @@ File: pics/process-states-and-state-transitions.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/process-states-and-state-transitions.jpg  used on input line 539.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [14 <./pics/process-context-switch.jpg> <./pics/process-states-and-state-transitions.jpg>] [15]
-<pics/fork.jpg, id=433, 1284.8pt x 722.7pt>
+<pics/fork.jpg, id=473, 1284.8pt x 722.7pt>
 
 ./Notes.tex:637: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -706,7 +706,7 @@ Package pdftex.def Info: pics/fork.jpg  used on input line 637.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 639.
 [16 <./pics/fork.jpg>]
-<pics/exec-and-fork.jpg, id=438, 1284.8pt x 722.7pt>
+<pics/exec-and-fork.jpg, id=478, 1284.8pt x 722.7pt>
 
 ./Notes.tex:654: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -737,7 +737,7 @@ File: pics/exec-and-fork.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/exec-and-fork.jpg  used on input line 654.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [17 <./pics/exec-and-fork.jpg>] [18] [19]
-<pics/the-design-space.jpg, id=452, 1284.8pt x 722.7pt>
+<pics/the-design-space.jpg, id=493, 1284.8pt x 722.7pt>
 
 ./Notes.tex:844: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -768,7 +768,7 @@ File: pics/the-design-space.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/the-design-space.jpg  used on input line 844.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [20]
-<pics/process-address-space.jpg, id=457, 1284.8pt x 722.7pt>
+<pics/process-address-space.jpg, id=498, 1284.8pt x 722.7pt>
 
 ./Notes.tex:848: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -798,7 +798,7 @@ File: pics/process-address-space.jpg Graphic file (type jpg)
 <use pics/process-address-space.jpg>
 Package pdftex.def Info: pics/process-address-space.jpg  used on input line 848.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/process-address-space-threads.jpg, id=458, 1284.8pt x 722.7pt>
+<pics/process-address-space-threads.jpg, id=499, 1284.8pt x 722.7pt>
 ./Notes.tex:850: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -828,7 +828,7 @@ File: pics/process-address-space-threads.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/process-address-space-threads.jpg  used on input line 850.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [21 <./pics/the-design-space.jpg> <./pics/process-address-space.jpg>] [22 <./pics/process-address-space-threads.jpg>]
-<pics/kernel-threads.jpg, id=467, 1284.8pt x 722.7pt>
+<pics/kernel-threads.jpg, id=508, 1284.8pt x 722.7pt>
 
 ./Notes.tex:895: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -859,7 +859,7 @@ File: pics/kernel-threads.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/kernel-threads.jpg  used on input line 895.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [23 <./pics/kernel-threads.jpg>]
-<pics/user-level-threads.jpg, id=473, 1284.8pt x 722.7pt>
+<pics/user-level-threads.jpg, id=513, 1284.8pt x 722.7pt>
 
 ./Notes.tex:946: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -890,7 +890,7 @@ File: pics/user-level-threads.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/user-level-threads.jpg  used on input line 946.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [24 <./pics/user-level-threads.jpg>] [25] [26]
-<pics/critical-sections.jpg, id=487, 1284.8pt x 722.7pt>
+<pics/critical-sections.jpg, id=527, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1107: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -921,7 +921,7 @@ File: pics/critical-sections.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/critical-sections.jpg  used on input line 1107.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [27 <./pics/critical-sections.jpg>] [28]
-<pics/locks.jpg, id=498, 1284.8pt x 722.7pt>
+<pics/locks.jpg, id=538, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1188: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -952,7 +952,7 @@ File: pics/locks.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/locks.jpg  used on input line 1188.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [29 <./pics/locks.jpg>] [30] [31]
-<pics/bounded-buffer-using-semaphores.jpg, id=513, 1284.8pt x 722.7pt>
+<pics/bounded-buffer-using-semaphores.jpg, id=553, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1348: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -982,7 +982,7 @@ File: pics/bounded-buffer-using-semaphores.jpg Graphic file (type jpg)
 <use pics/bounded-buffer-using-semaphores.jpg>
 Package pdftex.def Info: pics/bounded-buffer-using-semaphores.jpg  used on input line 1348.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/readers-writers-using-semaphores.jpg, id=514, 1284.8pt x 722.7pt>
+<pics/readers-writers-using-semaphores.jpg, id=554, 1284.8pt x 722.7pt>
 ./Notes.tex:1350: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -1012,7 +1012,7 @@ File: pics/readers-writers-using-semaphores.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/readers-writers-using-semaphores.jpg  used on input line 1350.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [32 <./pics/bounded-buffer-using-semaphores.jpg> <./pics/readers-writers-using-semaphores.jpg>] [33]
-<pics/a-monitor.jpg, id=523, 1284.8pt x 722.7pt>
+<pics/a-monitor.jpg, id=563, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1445: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1043,7 +1043,7 @@ File: pics/a-monitor.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/a-monitor.jpg  used on input line 1445.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [34 <./pics/a-monitor.jpg>] [35] [36]
-<pics/deadlock.jpg, id=536, 1284.8pt x 722.7pt>
+<pics/deadlock.jpg, id=576, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1582: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1073,7 +1073,7 @@ File: pics/deadlock.jpg Graphic file (type jpg)
 <use pics/deadlock.jpg>
 Package pdftex.def Info: pics/deadlock.jpg  used on input line 1582.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/resource-allocation-graph-with-a-deadlock.jpg, id=537, 1284.8pt x 722.7pt>
+<pics/resource-allocation-graph-with-a-deadlock.jpg, id=577, 1284.8pt x 722.7pt>
 ./Notes.tex:1602: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -1103,7 +1103,7 @@ File: pics/resource-allocation-graph-with-a-deadlock.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/resource-allocation-graph-with-a-deadlock.jpg  used on input line 1602.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [37 <./pics/deadlock.jpg>] [38 <./pics/resource-allocation-graph-with-a-deadlock.jpg>] [39] [40]
-<pics/resource-allocation-graph-and-wait-for-graph.jpg, id=575, 1284.8pt x 722.7pt>
+<pics/resource-allocation-graph-and-wait-for-graph.jpg, id=616, 1284.8pt x 722.7pt>
 
 ./Notes.tex:1793: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1139,7 +1139,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2000--2001
  []
 
 [45] [46] [47] [48] [49] [50] [51]
-<pics/users-view-of-a-program.jpg, id=629, 1284.8pt x 722.7pt>
+<pics/users-view-of-a-program.jpg, id=669, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2502: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1170,7 +1170,7 @@ File: pics/users-view-of-a-program.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/users-view-of-a-program.jpg  used on input line 2502.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [52]
-<pics/segment-lookups.jpg, id=634, 1284.8pt x 722.7pt>
+<pics/segment-lookups.jpg, id=674, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2518: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1201,7 +1201,7 @@ File: pics/segment-lookups.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/segment-lookups.jpg  used on input line 2518.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [53 <./pics/users-view-of-a-program.jpg> <./pics/segment-lookups.jpg>] [54]
-<pics/paging-hardware.jpg, id=643, 1284.8pt x 722.7pt>
+<pics/paging-hardware.jpg, id=683, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2569: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1232,7 +1232,7 @@ File: pics/paging-hardware.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/paging-hardware.jpg  used on input line 2569.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [55 <./pics/paging-hardware.jpg>]
-<pics/paging-hardware-with-tlb.jpg, id=649, 1284.8pt x 722.7pt>
+<pics/paging-hardware-with-tlb.jpg, id=689, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2613: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1263,7 +1263,7 @@ File: pics/paging-hardware-with-tlb.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/paging-hardware-with-tlb.jpg  used on input line 2613.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [56 <./pics/paging-hardware-with-tlb.jpg>]
-<pics/valid-or-invalid-bit-in-a-page-table.jpg, id=654, 1284.8pt x 722.7pt>
+<pics/valid-or-invalid-bit-in-a-page-table.jpg, id=694, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2660: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1293,7 +1293,7 @@ File: pics/valid-or-invalid-bit-in-a-page-table.jpg Graphic file (type jpg)
 <use pics/valid-or-invalid-bit-in-a-page-table.jpg>
 Package pdftex.def Info: pics/valid-or-invalid-bit-in-a-page-table.jpg  used on input line 2660.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/shared-pages-example.jpg, id=655, 1284.8pt x 722.7pt>
+<pics/shared-pages-example.jpg, id=695, 1284.8pt x 722.7pt>
 ./Notes.tex:2682: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -1323,7 +1323,7 @@ File: pics/shared-pages-example.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/shared-pages-example.jpg  used on input line 2682.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [57 <./pics/valid-or-invalid-bit-in-a-page-table.jpg>]
-<pics/two-level-page-table-scheme.jpg, id=660, 1284.8pt x 722.7pt>
+<pics/two-level-page-table-scheme.jpg, id=700, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2710: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1354,7 +1354,7 @@ File: pics/two-level-page-table-scheme.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/two-level-page-table-scheme.jpg  used on input line 2710.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [58 <./pics/shared-pages-example.jpg>] [59 <./pics/two-level-page-table-scheme.jpg>]
-<pics/hashed-page-table.jpg, id=670, 1284.8pt x 722.7pt>
+<pics/hashed-page-table.jpg, id=710, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2795: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1385,7 +1385,7 @@ File: pics/hashed-page-table.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/hashed-page-table.jpg  used on input line 2795.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [60 <./pics/hashed-page-table.jpg>] [61] [62]
-<pics/page-table-when-some-pages-are-not-in-main-memory.jpg, id=687, 1284.8pt x 722.7pt>
+<pics/page-table-when-some-pages-are-not-in-main-memory.jpg, id=727, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2957: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1416,7 +1416,7 @@ File: pics/page-table-when-some-pages-are-not-in-main-memory.jpg Graphic file (t
 Package pdftex.def Info: pics/page-table-when-some-pages-are-not-in-main-memory.jpg  used on input line 2957.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [63]
-<pics/steps-in-handling-a-page-fault.jpg, id=697, 1284.8pt x 722.7pt>
+<pics/steps-in-handling-a-page-fault.jpg, id=738, 1284.8pt x 722.7pt>
 
 ./Notes.tex:2959: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1447,7 +1447,7 @@ File: pics/steps-in-handling-a-page-fault.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/steps-in-handling-a-page-fault.jpg  used on input line 2959.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [64 <./pics/page-table-when-some-pages-are-not-in-main-memory.jpg> <./pics/steps-in-handling-a-page-fault.jpg>]
-<pics/page-replacement.jpg, id=702, 1284.8pt x 722.7pt>
+<pics/page-replacement.jpg, id=743, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3009: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1487,7 +1487,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 [69]
-<pics/example-of-index-and-relative-files.jpg, id=732, 1284.8pt x 722.7pt>
+<pics/example-of-index-and-relative-files.jpg, id=772, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3353: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1518,7 +1518,7 @@ File: pics/example-of-index-and-relative-files.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/example-of-index-and-relative-files.jpg  used on input line 3353.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [70 <./pics/example-of-index-and-relative-files.jpg>] [71] [72]
-<pics/basic-file-system-structures.jpg, id=745, 1284.8pt x 722.7pt>
+<pics/basic-file-system-structures.jpg, id=785, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3556: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1549,7 +1549,7 @@ File: pics/basic-file-system-structures.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/basic-file-system-structures.jpg  used on input line 3556.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [73]
-<pics/pathname-resolution.jpg, id=758, 1284.8pt x 722.7pt>
+<pics/pathname-resolution.jpg, id=798, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3585: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1585,7 +1585,7 @@ Overfull \hbox (15.07059pt too wide) in paragraph at lines 3600--3600
  []
 
 [75 <./pics/pathname-resolution.jpg>]
-<pics/the-block-list-portion-of-the-inode.jpg, id=767, 1284.8pt x 722.7pt>
+<pics/the-block-list-portion-of-the-inode.jpg, id=807, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3645: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1616,7 +1616,7 @@ File: pics/the-block-list-portion-of-the-inode.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/the-block-list-portion-of-the-inode.jpg  used on input line 3645.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [76 <./pics/the-block-list-portion-of-the-inode.jpg>]
-<pics/putting-it-all-together.jpg, id=772, 1284.8pt x 722.7pt>
+<pics/putting-it-all-together.jpg, id=812, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3687: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1647,7 +1647,7 @@ File: pics/putting-it-all-together.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/putting-it-all-together.jpg  used on input line 3687.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [77 <./pics/putting-it-all-together.jpg>]
-<pics/virtual-machine-diagram.jpg, id=777, 1284.8pt x 722.7pt>
+<pics/virtual-machine-diagram.jpg, id=817, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3741: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1677,7 +1677,7 @@ File: pics/virtual-machine-diagram.jpg Graphic file (type jpg)
 <use pics/virtual-machine-diagram.jpg>
 Package pdftex.def Info: pics/virtual-machine-diagram.jpg  used on input line 3741.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-<pics/hypervisor-types.jpg, id=778, 1284.8pt x 722.7pt>
+<pics/hypervisor-types.jpg, id=818, 1284.8pt x 722.7pt>
 ./Notes.tex:3759: Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
@@ -1707,7 +1707,7 @@ File: pics/hypervisor-types.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics/hypervisor-types.jpg  used on input line 3759.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
 [78 <./pics/virtual-machine-diagram.jpg>] [79 <./pics/hypervisor-types.jpg>] [80]
-<pics/virtualising-x86-on-modern-hardware.jpg, id=795, 1284.8pt x 722.7pt>
+<pics/virtualising-x86-on-modern-hardware.jpg, id=835, 1284.8pt x 722.7pt>
 
 ./Notes.tex:3908: Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -1737,29 +1737,91 @@ File: pics/virtualising-x86-on-modern-hardware.jpg Graphic file (type jpg)
 <use pics/virtualising-x86-on-modern-hardware.jpg>
 Package pdftex.def Info: pics/virtualising-x86-on-modern-hardware.jpg  used on input line 3908.
 (pdftex.def)             Requested size: 479.99521pt x 270.0pt.
-[81 <./pics/virtualising-x86-on-modern-hardware.jpg>] [82]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3959.
- [83]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3959.
+[81 <./pics/virtualising-x86-on-modern-hardware.jpg>] [82] [83]
+<pics/memory-hierarchy.jpg, id=849, 1284.8pt x 722.7pt>
+
+./Notes.tex:4028: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.4028 ...aphics[height=270]{memory-hierarchy.jpg}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:4028: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.4028 ...aphics[height=270]{memory-hierarchy.jpg}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/memory-hierarchy.jpg Graphic file (type jpg)
+<use pics/memory-hierarchy.jpg>
+Package pdftex.def Info: pics/memory-hierarchy.jpg  used on input line 4028.
+(pdftex.def)             Requested size: 479.99521pt x 270.0pt.
+[84 <./pics/memory-hierarchy.jpg>]
+<pics/physical-disk-structure.jpg, id=854, 1284.8pt x 722.7pt>
+
+./Notes.tex:4064: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.4064 ...height=270]{physical-disk-structure.jpg}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./Notes.tex:4064: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \relax 
+l.4064 ...height=270]{physical-disk-structure.jpg}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+File: pics/physical-disk-structure.jpg Graphic file (type jpg)
+<use pics/physical-disk-structure.jpg>
+Package pdftex.def Info: pics/physical-disk-structure.jpg  used on input line 4064.
+(pdftex.def)             Requested size: 479.99521pt x 270.0pt.
+[85 <./pics/physical-disk-structure.jpg>] [86] [87] [88]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4366.
+ [89]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4366.
  (./Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3959.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3959.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4366.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4366.
 Package rerunfilecheck Info: File `Notes.out' has not changed.
-(rerunfilecheck)             Checksum: C21430A027C49B8A74DD16D4503A54EA;4315.
+(rerunfilecheck)             Checksum: 1CFB2CB343312106C25D8BB77857BC27;4826.
  ) 
 Here is how much of TeX's memory you used:
- 7570 strings out of 492616
- 110300 string characters out of 6135178
- 206282 words of memory out of 5000000
- 11120 multiletter control sequences out of 15000+600000
+ 7602 strings out of 492616
+ 110941 string characters out of 6135178
+ 207288 words of memory out of 5000000
+ 11136 multiletter control sequences out of 15000+600000
  13483 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,43p,813b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on Notes.pdf (83 pages, 4581060 bytes).
+Output written on Notes.pdf (89 pages, 4780156 bytes).
 PDF statistics:
- 907 PDF objects out of 1000 (max. 8388607)
- 756 compressed objects within 8 object streams
- 203 named destinations out of 1000 (max. 500000)
- 763 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 981 PDF objects out of 1000 (max. 8388607)
+ 821 compressed objects within 9 object streams
+ 217 named destinations out of 1000 (max. 500000)
+ 837 words of extra memory for PDF output out of 10000 (max. 10000000)
 

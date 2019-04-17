@@ -60,5 +60,10 @@
 \BOOKMARK [2][-]{subsection.11.6}{Working set}{section.11}% 60
 \BOOKMARK [2][-]{subsection.11.7}{Thrashing}{section.11}% 61
 \BOOKMARK [1][-]{section.12}{File Systems}{}% 62
-\BOOKMARK [1][-]{section.13}{Secondary Storage}{}% 63
-\BOOKMARK [1][-]{section.14}{Virtualisation}{}% 64
+\BOOKMARK [2][-]{subsection.12.1}{Roles}{section.12}% 63
+\BOOKMARK [2][-]{subsection.12.2}{Files}{section.12}% 64
+\BOOKMARK [2][-]{subsection.12.3}{Directories}{section.12}% 65
+\BOOKMARK [2][-]{subsection.12.4}{File Protection}{section.12}% 66
+\BOOKMARK [2][-]{subsection.12.5}{Unix}{section.12}% 67
+\BOOKMARK [1][-]{section.13}{Virtualisation}{}% 68
+\BOOKMARK [1][-]{section.14}{Secondary Storage}{}% 69

@@ -268,7 +268,7 @@
 
 \textbf{Monolithic design}
 \begin{itemize}
-    \item Traditionally, OS\emph{s} (like UNIX) were built as a \emph{monolithic} entity
+    \item Traditionally, OS\emph{s} (like Unix) were built as a \emph{monolithic} entity
         User programs | OS (everything) | hardware
     \item Major advantage: cost of module interactions is low (procedure call)
     \item Disadvantages:
@@ -336,7 +336,7 @@
         \end{itemize}
     \item First microkernel system was Hydra (CMU, 1970)
         \begin{itemize}
-            \item Contemporaries: Mach (CMU), Chorus (French UNIX-like OS), OS X (Apple),
+            \item Contemporaries: Mach (CMU), Chorus (French Unix-like OS), OS X (Apple),
                 in some ways NT (Microsoft)
         \end{itemize}
 \end{itemize}
@@ -471,7 +471,7 @@ MINIX 3
             \item execution state
             \item PC, SP, registers
             \item address space info
-            \item UNIX user id, group id
+            \item Unix user id, group id
             \item scheduling priority
             \item accounting info
             \item pointers for state queues
@@ -531,7 +531,7 @@ MINIX 3
         \end{itemize}
     \item As a process executes, it moves from state to state
         \begin{itemize}
-            \item UNIX:\ run \texttt{top}, STAT column shows current state
+            \item Unix:\ run \texttt{top}, STAT column shows current state
             \item which state is a process most of the time?
         \end{itemize}
 \end{itemize}
@@ -586,9 +586,9 @@ MINIX 3
         \begin{itemize}
             \item creator is called the \emph{parent};
             \item created process is called the \emph{child};\\\
-                UNIX:\ do \texttt{ps -ef}, look for PPID field
+                Unix:\ do \texttt{ps -ef}, look for PPID field
             \item what creates the first process, and when? \\
-                on UNIX, this first process is init; \\
+                on Unix, this first process is init; \\
                 on many Linux distributions, this is SystemD or Runit (on Void).
         \end{itemize}
 \end{itemize}
@@ -605,9 +605,9 @@ MINIX 3
         finish, or continue in parallel.
 \end{itemize}
 
-\textbf{UNIX process creation details}
+\textbf{Unix process creation details}
 \begin{itemize}
-    \item UNIX process creation through \texttt{fork} system call
+    \item Unix process creation through \texttt{fork} system call
         \begin{itemize}
             \item creates and initializes a new PCB
                 \begin{itemize}
@@ -1014,7 +1014,7 @@ MINIX 3
             \item scheduler requests that a timer interrupt be delivered by the OS
                 periodically
                 \begin{itemize}
-                    \item usually delivered as a UNIX signal (\texttt{man signal})
+                    \item usually delivered as a Unix signal (\texttt{man signal})
                     \item signals are just like software interrupts, but delivered to
                         user-level by the OS instead of delivered to the OS by hardware
                 \end{itemize}
@@ -2108,7 +2108,7 @@ Response Time $R$ at a single server under FCFS scheduling:
         \end{itemize}
 \end{itemize}
 
-\textbf{UNIX scheduling}
+\textbf{Unix scheduling}
 \begin{itemize}
     \item Canonical scheduler is pretty much MLFQ
         \begin{itemize}
@@ -2623,14 +2623,14 @@ First-fit and best-fit better than worst-fit in terms of speed and storage utili
             \item Hit ratio --- percentage of times that a page number is found in the
                 associative memory;
         \end{itemize}
-        \item Consider $\alpha = 80\%$, 100ns for memory access
-            \begin{itemize}
-                \item EAT $ = 0.80 \times 100 + 0.20 \times 200 = 120$ns
-            \end{itemize}
-        \item Consider hit ratio $\alpha = 99$, 100ns for memory access
-            \begin{itemize}
-                \item EAT $ = 0.99 \times 100 + 0.01 \times 200 = 101$ns
-            \end{itemize}
+    \item Consider $\alpha = 80\%$, 100ns for memory access
+        \begin{itemize}
+            \item EAT $ = 0.80 \times 100 + 0.20 \times 200 = 120$ns
+        \end{itemize}
+    \item Consider hit ratio $\alpha = 99$, 100ns for memory access
+        \begin{itemize}
+            \item EAT $ = 0.99 \times 100 + 0.01 \times 200 = 101$ns
+        \end{itemize}
 \end{itemize}
 
 \textbf{Memory Protection}
@@ -3238,10 +3238,723 @@ First-fit and best-fit better than worst-fit in terms of speed and storage utili
         \end{itemize}
 \end{itemize}
 
+\break{}
+
 \section{File Systems}
 
-\section{Secondary Storage}
+\subsection{Roles}
+
+\textbf{Primary Roles of the OS (file system)}
+\begin{enumerate}
+    \item Hide hardware specific interface
+    \item Allocate disk blocks
+    \item Check permissions
+    \item Understand directory file structure
+    \item Maintain \emph{metadata}
+    \item Performance
+    \item Flexibility
+\end{enumerate}
+
+\textbf{File systems}
+\begin{itemize}
+    \item The concept of a file system is simple
+    \item The implementation of the abstraction for secondary storage
+        \begin{itemize}
+            \item abstraction = files
+        \end{itemize}
+    \item Logical organisation of files into directories
+        \begin{itemize}
+            \item the directory hierarchy
+        \end{itemize}
+    \item Sharing of data between
+        \begin{itemize}
+            \item processes, people, and machines
+        \end{itemize}
+    \item Access control, consistency, etc.
+\end{itemize}
+
+\subsection{Files}
+
+\textbf{Files}
+\begin{itemize}
+    \item A collection of data with some properties
+        \begin{itemize}
+            \item contents, size, owner, last read/write time, protection, etc.
+        \end{itemize}
+    \item File types
+        \begin{itemize}
+            \item understood by file system
+                \begin{itemize}
+                    \item device, directory, symbolic link
+                \end{itemize}
+            \item understood by other parts of OS or by runtime libraries
+                \begin{itemize}
+                    \item executable, dll, source code, object code, text file, etc.
+                \end{itemize}
+        \end{itemize}
+    \item Type can be encoded in the file's name or contents
+        \begin{itemize}
+            \item windows encodes type
+                \begin{itemize}
+                    \item com, exe, bat, dll, jpg, mov, mp3, \dots
+                \end{itemize}
+        \end{itemize}
+    \item Old Mac OS stored the name of the creating program along with the file
+    \item Unix --- initial characters (e.g.\ #)
+\end{itemize}
+
+\textbf{Basic operations}
+
+\begin{tabular}{l l}
+    \toprule
+    \emph{Unix}                    & \emph{Windows} \\
+    \midrule
+    \texttt{create\,(name)}        & \texttt{CreateFile\,(name, CREATE)} \\
+    \texttt{open\,(Name, mode)}    & \texttt{CreateFile\,(name, OPEN)} \\
+    \texttt{read\,(fd, buf, len)}  & \texttt{ReadFile\,(handle, \dots)} \\
+    \texttt{write\,(fd, buf, len)} & \texttt{WriteFile\,(handle, \dots)} \\
+    \texttt{sync\,(fd)}            & \texttt{FlushFileBuffers\,(handle, \dots)} \\
+    \texttt{seek\,(fd)}            & \texttt{SetFilePointer\,(handle, \dots)} \\
+    \texttt{close\,(fd)}           & \texttt{CloseHandle\,(handle, \dots)} \\
+    \texttt{unlink\,(name)}        & \texttt{DeleteFile\,(name)} \\
+    \texttt{rename\,(old, new)}    & \texttt{CopyFile\,(name)} \\
+                                   & \texttt{MoveFile\,(name)} \\
+                                   \bottomrule
+\end{tabular}
+
+\textbf{File access methods}
+\begin{itemize}
+    \item File systems provide different \emph{access methods}
+        \begin{itemize}
+            \item sequential access
+                \begin{itemize}
+                    \item read bytes one at a time, in order
+                \end{itemize}
+            \item direct access
+                \begin{itemize}
+                    \item random access given a block/byte number
+                \end{itemize}
+            \item record access
+                \begin{itemize}
+                    \item file is array of fixed- or variable-sized records
+                \end{itemize}
+            \item indexed access
+                \begin{itemize}
+                    \item one file contains an index to a record in another file
+                    \item apps can find a file based on the value in that record (similar to DB)
+                \end{itemize}
+        \end{itemize}
+    \item Why do we care about distinguishing sequential from direct access?
+        \begin{itemize}
+            \item what might the FS do differently in these cases?
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{example-of-index-and-relative-files.jpg}
+
+\subsection{Directories}
+
+\textbf{Directories}
+\begin{itemize}
+    \item Directories provide:
+        \begin{itemize}
+            \item a way for users to organise their files
+            \item a convenient file name-space for both users and file-systems
+        \end{itemize}
+    \item Most file-systems support multi-level directories
+        \begin{itemize}
+            \item naming hierarchies (\texttt{/}, \texttt{/usr}, \texttt{/usr/local},
+                \texttt{/usr/local/bin}, \texttt{\dots})
+        \end{itemize}
+    \item Most file-systems support the notion of current directory
+    \item Absolute names: fully-qualified starting from root of file-system
+    \item Relative names: specified with respect to current directory
+\end{itemize}
+
+\textbf{Directory internals}
+\begin{itemize}
+    \item A directory is typically just a file that happens to contains special meta-data
+    \item Directory
+        \begin{itemize}
+            \item list of (name of file, file attributes)
+        \end{itemize}
+    \item Attributes include such things as:
+        \begin{itemize}
+            \item size, protection, location on disk, creation time, access time, \dots
+        \end{itemize}
+    \item The directory list is usually unordered (effectively random),
+        \begin{itemize}
+            \item the \texttt{ls} command sorts the results for you
+        \end{itemize}
+\end{itemize}
+
+\textbf{Path name translation}
+\begin{itemize}
+    \item You want to open \texttt{/one/two/three}
+        \begin{verbatim}
+    fd = open("one/two/three", O_RDWR)
+        \end{verbatim}
+    \item Inside the file system
+        \begin{itemize}
+            \item open directory \texttt{/} (well known, can always find)
+            \item search the directory for \texttt{one}, get location of \texttt{one}
+            \item open directory \texttt{one}, search for \texttt{two}, get location of
+                \texttt{two}
+            \item open directory \texttt{two}, search for \texttt{three}, got location of
+                \texttt{three}
+            \item open file \texttt{three}
+            \item (of course, permissions are checked at each step)
+        \end{itemize}
+    \item File-system spends much time walking down directory paths
+        \begin{itemize}
+            \item this is why open is separate from read/write (session state)
+            \item OS will cache prefix lookups to enhance performance
+                \begin{itemize}
+                    \item \texttt{/a/b}, \texttt{/a/bb}, \texttt{/a/bbb} all share the
+                        \texttt{/a} prefix
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsection{File Protection}
+
+\begin{itemize}
+    \item FS implements a protection system
+        \begin{itemize}
+            \item to control who can access a file (user)
+            \item to control how they can access it (e.g.\ read, write, or exec)
+        \end{itemize}
+    \item Often generalised
+        \begin{itemize}
+            \item generalise file to \emph{objects} (the ``what'')
+            \item generalise users to \emph{principals} (the ``who'', user or program)
+            \item generalise read/write to \emph{actions} (the ``how,'' or operations)
+        \end{itemize}
+    \item Protection system dictates
+        \begin{itemize}
+            \item whether a given action
+            \item performed by a given principal
+            \item on a given object should be allowed
+        \end{itemize}
+    \item E.g.\ you can read or write your files, but others cannot
+    \item E.g.\ you can read \texttt{/group/teaching/cs3} but you cannot write to it
+\end{itemize}
+
+\textbf{Model for representing protection}
+\begin{itemize}
+    \item Two different ways of thinking about it:
+        \begin{itemize}
+            \item access control lists (ACLs)
+                \begin{itemize}
+                    \item for each object, keep lists of principals and principals' allowed
+                        actions
+                \end{itemize}
+            \item capabilities
+                \begin{itemize}
+                    \item for each principal, keep lists of objects and principals' allowed
+                        actions
+                \end{itemize}
+        \end{itemize}
+    \item Both can be represented with the following matrix: \\
+        \begin{tabular}{l l l l}
+            \toprule
+                             & \texttt{/etc/passwd} & \texttt{/home/gribble} & \texttt{/home/guest} \\
+                             \midrule
+            \texttt{root}    & \texttt{rw}          & \texttt{rw}            & \texttt{rw} \\
+            \texttt{gribble} & \texttt{r}           & \texttt{rw}            & \texttt{r} \\
+            \texttt{guest}   &                      &                        & \texttt{r} \\
+            \bottomrule
+        \end{tabular}
+\end{itemize}
+
+\textbf{ACLs v.s.\ Capabilities}
+\begin{itemize}
+    \item Capabilities are easy to transfer
+        \begin{itemize}
+            \item they are like keys: can hand them off
+            \item they make haring easy
+        \end{itemize}
+    \item ACLs are easier to manage
+        \begin{itemize}
+            \item object-centric, easy to grant and revoke
+                \begin{itemize}
+                    \item to revoke capability, need to keep track of principals that have it
+                    \item hard to do, given that principals can hand off capabilities
+                \end{itemize}
+        \end{itemize}
+    \item ACLs grow large when object is heavily shared
+        \begin{itemize}
+            \item can simplify by using \emph{groups}
+                \begin{itemize}
+                    \item put users in groups, put groups in ACLs
+                \end{itemize}
+        \end{itemize}
+    \item Additional benefit
+        \begin{itemize}
+            \item change group membership, affects \emph{all} objects that have this group in
+                its ACL
+        \end{itemize}
+\end{itemize}
+
+\subsection{Unix}
+
+\textbf{The original Unix file system}
+\begin{itemize}
+    \item Dennis Ritchie and Ken Thompson, Bell Labs, 1969
+    \item ``Unix rose from the ashes of a multi-organisational effort in the early 1960s to
+        develop a dependable timesharing operating system'' --- Multics
+    \item Designed for a ``workgroup'' sharing a single system
+    \item Did its job well
+        \begin{itemize}
+            \item Although it has been stretched in many directions
+        \end{itemize}
+\end{itemize}
+
+\textbf{(Old) Unix disks are divided into five parts\dots}
+\begin{enumerate}
+    \item Boot block \\
+        can boot the system by loading from this block
+    \item Superblock \\
+        specifies boundaries of next 3 areas, and contains head of freelists of inodes
+        and file blocks
+    \item inode area \\
+        contains descriptors (inodes) for each file on the disk;
+        all inodes are the same size;
+        head of freelist is in the superblock.
+    \item File contents area \\
+        fixed-size blocks; head of freelist is in the superblock
+    \item Swap area \\
+        holds processes that have been swapped out of memory
+\end{enumerate}
+
+\textbf{Basic file system structures}
+\begin{itemize}
+    \item Every file and directory is represented by an inode
+        \begin{itemize}
+            \item stands for ``index node''
+        \end{itemize}
+    \item Contains two kinds of information
+        \begin{enumerate}
+            \item Metadata describing the file's owner, access rights, etc.
+            \item Location of the file's blocks on disk
+        \end{enumerate}
+\end{itemize}
+
+\textbf{inode format}
+\begin{itemize}
+    \item User number
+    \item Group number
+    \item Protection bits
+    \item Times (file last read, file last written, inode last written)
+    \item File code: specifies if the inode represents a directory, and ordinary user file,
+        or a ``special'' file (typically an I/O device)
+    \item Size: length of file in bytes
+    \item Block list: locates contents of file (in the file contents area)
+    \item Link count: number of directories referencing this inode
+\end{itemize}
+
+\includegraphics[height=270]{basic-file-system-structures.jpg}
+
+\textbf{The flat (inode) file system}
+\begin{itemize}
+    \item Each file is known by a number, which is the number of the inode
+        \begin{itemize}
+            \item 1, 2, 3, etc.!
+        \end{itemize}
+    \item Files are created empty, and grow when extended through writes
+\end{itemize}
+
+\textbf{The tree (directory, hierarchical) file system}
+\begin{itemize}
+    \item A directory is a flat file of fixed-size entries
+    \item Each entry consists of an inode number and a file name
+        \begin{itemize}
+            \item These are the contents of the directory ``file data'' itself ---
+                \emph{not} the directory's inode
+            \item Filenames (in Unix) are not stored in the inode at all.
+        \end{itemize}
+    \item Special inodes:
+        \begin{itemize}
+            \item inode 2 is the root directory
+            \item inode 1 --- a hidden file containing all bad blocks
+        \end{itemize}
+\end{itemize}
+
+\textbf{Pathname resolution}
+
+\includegraphics[height=270]{pathname-resolution.jpg}
+
+\textbf{Locating inodes on disk}
+\begin{itemize}
+    \item Directories give the \emph{inode number} of a file.
+        \begin{itemize}
+            \item How do we find the inode itself on disk?
+        \end{itemize}
+    \item Basic idea: Top part of filesystem contains \emph{all} of the inodes
+        \begin{itemize}
+            \item inode number is just the ``index'' of the inode
+        \end{itemize}
+    \item Easy to compute the block address of a given inode:
+        \begin{verbatim}
+    block_addr(inode_num) = block_offset_of_first_inode + (inode_num * inode_size)
+        \end{verbatim}
+    \item This implies that a filesystem has a fixed number of potential inodes
+        \begin{itemize}
+            \item this number is generally set when the filesystem is created
+        \end{itemize}
+    \item The superblock stores important metatdata on filesystem layout,
+        list of free blocks, etc.
+\end{itemize}
+
+\textbf{Directory issues}
+\begin{itemize}
+    \item Directories map filenames to inode numbers
+    \item We can create multiple pointers to the same inode in different directories
+        \begin{itemize}
+            \item or even the same directory with different filenames.
+        \end{itemize}
+    \item In Unix, this is called a \emph{hard link} and can be done using \texttt{ln}
+    \item \texttt{/home/foo} and \texttt{/tmp/foo} now refer to the same file on disk
+\end{itemize}
+
+\textbf{How should we organise blocks on a disk?}
+\begin{itemize}
+    \item Very simple policy: A file consists of linked blocks
+        \begin{itemize}
+            \item inode points to the first block of the file;
+            \item each block points to the next block in the file (just a linked list on  disk)
+        \end{itemize}
+    \item Indexed files
+        \begin{itemize}
+            \item inode contains a list of block numbers containing the file:
+            \item array is allocated when the file is created.
+        \end{itemize}
+\end{itemize}
+
+\textbf{The ``block list'' portion of the inode (Unix Version 7)}
+\begin{itemize}
+    \item Points to blocks in the file contents area
+    \item Must be able to represent very small and very large files.
+    \item Each inode contains 13 block pointers
+        \begin{itemize}
+            \item first 10 are \emph{direct pointers} (pointers to 512B blocks of file data)
+            \item then single, double, and triple indirect pointers
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{the-block-list-portion-of-the-inode.jpg}
+
+\textbf{File Size}
+\begin{itemize}
+    \item Only occupies $13 \times 4$B in the inode
+    \item Can get to $10 \times 512$B = a 5120B file directly
+        \begin{itemize}
+            \item (10 direct pointers, blocks in the file contents area are 512B)
+        \end{itemize}
+    \item Can get to 128 $\times$ 512B = an additional 65KB with a single indirect reference
+        \begin{itemize}
+            \item (the 11th pointer in the inode gets you to a 512B block in the file
+                contents area that contains 128 4B pointers to blocks holding file data)
+        \end{itemize}
+    \item Can get to 128 $\times$ 128 $\times$ 512B = an additional 8MB with a double
+        indirect reference
+        \begin{itemize}
+            \item (the 12th pointer in the inode gets you to a 512B block in the file contents
+                area that contains 128 4B pointers to 512B blocks in the file contents area
+                that contains 128 4B pointers to 512B blocks holding file data)
+        \end{itemize}
+    \item Can get to 128 $\times$ 128 $\times$ 128 $\times$ 512B = an additional 1GB with a
+        triple indirect reference
+    \item Maximum file size is a little over 1GB+
+\end{itemize}
+
+\textbf{Update File Size}
+\begin{itemize}
+    \item A later version of Bell Labs Unix utilised 12 direct pointers, rather than 10
+    \item Berkeley Unix went to 1KB block sizes
+        \begin{itemize}
+            \item What's the effect on the maximum file size?
+                \begin{itemize}
+                    \item $256 \times 256 \times 256 \times 1\mathrm{K}$ = 17GB + a smidge
+                \end{itemize}
+        \end{itemize}
+    \item Subsequently went to to 4KB blocks
+        \begin{itemize}
+            \item 1K $\times$ 1K $\times$ 1K $\times$ 4K = 4TB
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{putting-it-all-together.jpg}
+
+\textbf{File system layout}
+\begin{itemize}
+    \item One important goal of a filesystem is to lay this data structure out on disk
+        \begin{itemize}
+            \item keep in mind the physical characteristics of the disk
+            \item seeks are expensive
+            \item characteristics of the workload
+                \begin{itemize}
+                    \item locality across files within a directory
+                    \item sequential access to many files
+                \end{itemize}
+        \end{itemize}
+    \item Old Unix's layout is very inefficient
+        \begin{itemize}
+            \item constantly seeking
+                \begin{itemize}
+                    \item between inode area and data block area
+                    \item as traverse filesystem, or sequentially read files
+                \end{itemize}
+        \end{itemize}
+    \item Newer file systems are smarter
+    \item Newer storage devices (SSDs) change the constraints
+\end{itemize}
+
+\break{}
 
 \section{Virtualisation}
+
+\textbf{Introduction}
+\begin{itemize}
+    \item Virtualisation is the process of creating a \emph{virtual} version of a \emph{physical}
+        object.
+    \item In computing, \emph{hardware virtualisation} is the process of creating a virtual
+        version of real hardware.
+    \item This virtual hardware can be used to run a complete OS.\
+\end{itemize}
+
+\textbf{Terminology}
+\begin{itemize}
+    \item \emph{Virtual Machine}:
+        A \emph{virtual} representation of a \emph{physical} machine
+        \begin{itemize}
+            \item Not to be confused with a \emph{Java Virtual Machine} or the \emph{CLR} (.NET)
+        \end{itemize}
+    \item \emph{Virtual Machine Monitor} or \emph{Hypervisor}:
+        A software application that monitors and manages running virtual machines.
+    \item \emph{Host Machine}:
+        The \emph{physical} machine that a \emph{virtual} machine is running on.
+    \item \emph{Guest Machine}:
+        The \emph{virtual} machine, running on the \emph{host} machine.
+\end{itemize}
+
+\includegraphics[height=270]{virtual-machine-diagram.jpg}
+
+\textbf{Virtual Machine Monitor (Hypervisor)}
+\begin{itemize}
+    \item The VMM is in charge of running the \emph{virtual machines}.
+    \item There are two main types of VMM:\
+        \begin{itemize}
+            \item Type 1: \emph{Native} \\
+                run directly on the host machine, and share out resources (such as
+                memory and devices) between guest machines.
+                (E.g.\ XEN, Oracle VM Server.)
+            \item Type 2: \emph{Hosted} \\
+                run as an application inside an OS, and support virtual machines running as
+                individual processes.
+                (E.g.\ VirtualBox, Parallels Desktop, QEMU.)
+        \end{itemize}
+\end{itemize}
+
+\includegraphics[height=270]{hypervisor-types.jpg}
+
+\textbf{Uses of Virtualisation}
+\begin{itemize}
+    \item \emph{Personal} (e.g.\ Parallels Desktop / VirtualBox)
+        \begin{itemize}
+            \item Running multiple OSs on one host, without the inconvenience of rebooting.
+            \item E.g.\ running Windows inside OS X.
+            \item Some hypervisors support \emph{seamless integration}.
+        \end{itemize}
+    \item \emph{Technical} (e.g.\ QEMU as used in the coursework)
+        \begin{itemize}
+            \item OS / Hardware Design
+            \item Kernel Debugging/Testing
+            \item Prototyping new architectures / architectural features
+        \end{itemize}
+    \item \emph{Commercial} (e.g.\ XEN/VMWare)
+        \begin{itemize}
+            \item Data centre server consolidation
+            \item High availability / Migration
+        \end{itemize}
+\end{itemize}
+
+\textbf{Types of Virtualisation}
+\begin{itemize}
+    \item Software emulation
+        \begin{itemize}
+            \item Maximum flexibility for virtualisation, but very slow to run (high overhead).
+            \item Each guest instruction is emulated (can use \emph{binary translation} for
+                speed-up).,
+        \end{itemize}
+    \item Containers/Namespaces
+        \begin{itemize}
+            \item Isolate processes / groups of processes within a single OS, e.g.\ Docker.
+        \end{itemize}
+    \item Full System or Hardware Virtualisation
+        \begin{itemize}
+            \item Guest machine is the \emph{same} architecture as the host machine,
+                e.g.\ Intel x86 on Intel x86.
+        \end{itemize}
+    \item Cross-architecture Virtualisation
+        \begin{itemize}
+            \item Guest machine has a \emph{different} architecture to the host machine,
+                e.g.\ ARM on Intel X86.
+            \item Must use \emph{software emulation} to do this.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Popek and Goldberg Requirements for virtualisation}
+
+Paper published in 1974 that laid the foundations for hardware virtualisation,
+and formalised the requirements for an architecture to be \emph{virtualisable}.
+
+Three main properties for a virtual machine
+\begin{enumerate}
+    \item Efficiency
+        \begin{itemize}
+            \item The majority of guest instructions are executed directly on the host machine.
+        \end{itemize}
+    \item Resource control
+        \begin{itemize}
+            \item The virtual machine monitor must remain in control of all machine resources.
+        \end{itemize}
+    \item Equivalence
+        \begin{itemize}
+            \item The virtual machine must behave in a way that is indistinguishable from if it
+                was running as a physical machine.
+        \end{itemize}
+\end{enumerate}
+
+\textbf{Efficiency}
+\begin{itemize}
+    \item \emph{``All innocuous instructions are executed by the hardware directly,
+        with no intervention at all on the part of the control program.''}
+    \item Normal guest machine instructions should be executed directly on the processor.
+        System instructions need to be emulated by the VMM.\
+\end{itemize}
+
+\textbf{Resource control}
+\begin{itemize}
+    \item \emph{``It must be impossible for that arbitrary program to affect the system
+            resources, i.e.\ memory available to it;
+        the allocator of the control program is to be invoked upon any attempt.''}
+    \item The virtual machine should not be able to affect the host machine in any adverse way.
+        The host machine should remain in control of all physical resources,
+        sharing them out to guest machines.
+\end{itemize}
+
+\textbf{Equivalence}
+\begin{itemize}
+    \item \emph{``Any program $K$ executing with a control program resident,
+            with two possible exceptions,
+            performs in a manner indistinguishable from the case when the control program
+            did not exist and $K$ had whatever freedom of access to privileged instructions
+        that the programmer had intended.''}
+    \item A formal way of saying that the OS running on a virtual machine should believe it is
+        running on a physical machine, i.e.\ the behaviour of the virtual machine
+        (from the guest OS' point of view) is identical to that of the corresponding physical
+        machine.
+    \item The two exceptions mentioned are:
+        \begin{itemize}
+            \item \emph{temporal latency} (some instruction sequences will take longer to run);
+            \item \emph{resource availability} (physical machine resources are shared between
+                virtual machines).
+        \end{itemize}
+\end{itemize}
+
+\textbf{Methods of virtualisation}
+\begin{itemize}
+    \item Full software emulation
+        \begin{itemize}
+            \item Not permitted by \emph{Popek ad Goldberg} because it violates the
+                \emph{efficiency} property.
+                \begin{itemize}
+                    \item Although, this no longer holds due to the advent of
+                        \emph{efficient binary translation}.
+                \end{itemize}
+            \item Required for \emph{cross-architecture virtualisation}, as guest instructions
+                cannot execute natively on the host.
+        \end{itemize}
+    \item Trap-and-emulate
+        \begin{itemize}
+            \item The guest OS runs \emph{de-privileged}, all non-privileged instructions
+                execute natively on the host.
+            \item All privileged instructions \emph{trap} to the VMM.\
+            \item VMM \emph{emulates} these privileged operations.
+            \item Guest resumes execution after emulation.
+        \end{itemize}
+\end{itemize}
+
+\textbf{Virtualising x86}
+\begin{itemize}
+    \item Originally x86 was not ``classically'' virtualisable.
+        \begin{itemize}
+            \item Some privileged instructions did not \emph{trap}, and so could not be
+                emulated correctly.
+        \end{itemize}
+    \item \emph{Interpretation} is too slow (violates \emph{efficiency})
+    \item \emph{Code Patching} leaves traces of virtualisation (violates \emph{equivalency})
+    \item \emph{Binary Translation} is better, but still incurs overhead.
+    \item Since 2005, x86 processors now support virtualisation in hardware,
+        \begin{itemize}
+            \item Intel-VT
+            \item AMD-V
+        \end{itemize}
+    \item The enables \emph{trap-and-emulate} style virtualisation.
+    \item Unmodified OSs can run natively on host machines.
+\end{itemize}
+
+\includegraphics[height=270]{virtualising-x86-on-modern-hardware.jpg}
+
+\textbf{Hardware acceleration for virtualisation}
+\begin{itemize}
+    \item Modern processors include hardware support for running virtual machines
+        \begin{itemize}
+            \item Intel VT-X and AMD-V for x86 processors.
+            \item ARM virtualisation extensions for ARM processors.
+        \end{itemize}
+    \item Hardware extensions allow all guest instructions (including system instructions)
+        to run natively on the processor.
+    \item This works by providing an isolated view of the processor to virtual machines.
+    \item OSs can then run \emph{directly} on the processor, believing they are running on
+        physical hardware.
+    \item Certain privileged operations \emph{trap} back to the hypervisor.
+\end{itemize}
+
+\textbf{Virtual machine access to resources}
+\begin{itemize}
+    \item Virtual machines need to be given access to resources such as:
+        \begin{itemize}
+            \item Memory
+            \item Storage
+            \item Networking
+            \item Graphics
+        \end{itemize}
+    \item It is the responsibility of the VMM to share out these resources.
+    \item Access to physical memory is managed by the VMM.\
+    \item For an \emph{unmodified} OS, expecting a ``real'' storage device (e.g.\ a hard disk),
+        the VMM must provide an \emph{emulation} of that device.
+    \item Some devices may be \emph{passed straight through} to the virtual machine,
+        e.g.\ dedicated \emph{network cards}.
+\end{itemize}
+
+\textbf{Paravirtualisation}
+\begin{itemize}
+    \item Guest OSs are \emph{aware} they are being virtualised.
+    \item They \emph{co-operate} with the hypervisor to enable increased \emph{memory} and
+        \emph{device} performance.
+    \item They no longer \emph{trap-and-emulate}, but instead request privileged operations
+        directly from the hypervisor.
+    \item They can \emph{co-operate} with the hypervisor so that host memory can be more
+        efficiently distributed.
+        Instead of providing an \emph{emulated storage device}, the hypervisor can provide
+        a \emph{paravirtualised} implementation.
+    \item Typically used in \emph{data centres} for large-scale virtualisation.
+\end{itemize}
+
+\break{}
+
+\section{Secondary Storage}
 
 \end{document}
